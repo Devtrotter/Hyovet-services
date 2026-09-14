@@ -1,0 +1,45 @@
+@use "abstracts" as *;
+
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 880fr) minmax(0, 675fr);
+  gap: rem(53);
+  width: min(#{rem(1608)}, calc(100% - #{$page-gutter} * 2));
+  margin-inline: auto;
+  padding-block: rem(80) rem(84);
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(32);
+  }
+}
+
+.afterMedia {
+  padding-top: rem(120);
+
+  @include below(lg) {
+    padding-top: rem(64);
+  }
+}
+
+.title {
+  font-size: rem(45);
+  font-weight: 600;
+  line-height: 1.5;
+
+  @include below(sm) {
+    font-size: rem(36);
+    line-height: 1.25;
+  }
+}
+
+.body {
+  margin-top: rem(8.5);
+  font-size: rem(24);
+  line-height: rem(36);
+
+  @include below(sm) {
+    font-size: rem(20);
+    line-height: 1.55;
+  }
+}

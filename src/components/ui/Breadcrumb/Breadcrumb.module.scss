@@ -1,0 +1,28 @@
+@use "abstracts" as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 rem(8);
+  font-size: rem(24);
+  line-height: 1.5;
+
+  @include below(sm) {
+    font-size: rem(17);
+  }
+}
+
+.link {
+  transition: opacity 0.2s ease;
+
+  @include hover {
+    opacity: 0.75;
+    text-decoration: underline;
+    text-underline-offset: rem(4);
+  }
+}
+
+.current {
+  font-weight: 600;
+}

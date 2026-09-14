@@ -1,0 +1,99 @@
+@use "abstracts" as *;
+
+.section {
+  padding-block: rem(118) rem(81);
+  background: #f5fafd;
+}
+
+// Colonnes de la maquette : texte 130 → 780px, liste 780 → 1656px
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 650fr) minmax(0, 877fr);
+  max-width: rem(1728);
+  margin-inline: auto;
+  padding-inline: rem(130) rem(72);
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(40);
+    padding-inline: $page-gutter;
+  }
+}
+
+.heading {
+  padding-top: rem(9);
+  padding-right: rem(24);
+}
+
+.title {
+  font-size: rem(45);
+  font-weight: 600;
+  line-height: 1.5;
+
+  @include below(sm) {
+    font-size: rem(36);
+    line-height: 1.25;
+  }
+}
+
+.subtitle {
+  max-width: rem(600);
+  font-size: rem(24);
+  line-height: 1.5;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: rem(24) minmax(0, 1fr);
+  column-gap: rem(32);
+  min-height: rem(152);
+  padding: rem(24) rem(40) rem(25) rem(24);
+  border-radius: $radius-md;
+  background: $color-white;
+  transition:
+    transform 0.45s $ease-out,
+    box-shadow 0.45s $ease-out;
+
+  @include hover {
+    transform: translateX(rem(6));
+    box-shadow: 0 rem(10) rem(30) rgba(0, 0, 0, 0.06);
+  }
+
+  @include below(sm) {
+    column-gap: rem(16);
+    min-height: 0;
+    padding: rem(20);
+  }
+}
+
+.dot {
+  align-self: center;
+  width: rem(24);
+  height: rem(24);
+  border-radius: 50%;
+  background: #d05833;
+}
+
+.itemTitle {
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: rem(38.5);
+
+  @include below(sm) {
+    font-size: rem(21);
+    line-height: 1.35;
+  }
+}
+
+.itemText {
+  margin-top: rem(9.6);
+  font-size: rem(18);
+  line-height: rem(27);
+  color: $color-muted;
+}

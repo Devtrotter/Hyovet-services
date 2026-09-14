@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "functions" as *;
+@use "tokens" as *;
+
+// Échelle d'affichage : le rendu à 100 % correspond à la maquette vue à 80 %.
+$breakpoints: (
+  sm: 512px,
+  md: 720px,
+  lg: 880px,
+);
+
+// Mobile-first inversé : la maquette est desktop, on dégrade vers le bas.
+@mixin below($bp) {
+  @media (max-width: #{map.get($breakpoints, $bp) - 0.02px}) {
+    @content;
+  }
+}
+
+@mixin above($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Conteneur centré : largeur maquette max, jamais plus large que le viewport - gouttières.
+@mixin container($max-width, $gutter: $page-gutter) {
+  width: min(#{$max-width}, calc(100% - #{$gutter} * 2));
+  margin-inline: auto;
+}
+
+@mixin focus-ring($color: $color-primary) {
+  &:focus-visible {
+    outline: 3px solid $color;
+    outline-offset: 3px;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Expose un thème cabinet sous forme de variables CSS
+@mixin cabinet-theme($name) {
+  $theme: map.get($cabinet-themes, $name);
+  --cab-accent: #{map.get($theme, accent)};
+  --cab-accent-dark: #{map.get($theme, accent-dark)};
+  --cab-soft: #{map.get($theme, soft)};
+  --cab-surface: #{map.get($theme, surface)};
+}

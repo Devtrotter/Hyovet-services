@@ -1,0 +1,124 @@
+@use "abstracts" as *;
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: rem(24);
+  overflow: hidden;
+  isolation: isolate;
+  background: #1a1a1a;
+  color: $color-white;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  @include hover {
+    .image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.image {
+  z-index: -2;
+  object-fit: cover;
+  transition: transform 1.2s $ease-out;
+}
+
+.body {
+  width: 100%;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+// ---------- Variante "verre dépoli" (accueil) ----------
+.glass {
+  height: rem(657);
+  border-radius: $radius-lg;
+
+  &::after {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 78%, #000 100%);
+  }
+
+  .body {
+    padding: rem(24);
+    border-radius: $radius-lg;
+    background: rgba(40, 40, 40, 0.28);
+    -webkit-backdrop-filter: blur(rem(14));
+    backdrop-filter: blur(rem(14));
+  }
+
+  .title {
+    font-size: rem(29.5);
+  }
+
+  .description {
+    margin-top: rem(12);
+    font-size: rem(21);
+    line-height: rem(32);
+  }
+
+  .cta {
+    width: 100%;
+    margin-top: rem(24);
+  }
+
+  @include below(lg) {
+    height: rem(600);
+  }
+}
+
+// ---------- Variante "overlay" (expertise) ----------
+.overlay {
+  height: rem(271);
+  border-radius: $radius-md;
+
+  &::after {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.32) 45%, rgba(0, 0, 0, 0.68) 100%);
+  }
+
+  .title {
+    font-size: rem(26);
+    font-weight: 700;
+    line-height: rem(37.8);
+    text-shadow: 0 rem(2) rem(10) rgba(0, 0, 0, 0.25);
+  }
+
+  .description {
+    margin-top: rem(3);
+    font-size: rem(18);
+    font-weight: 500;
+    line-height: rem(27);
+  }
+
+  .cta {
+    width: rem(229);
+    margin-top: rem(20);
+  }
+
+  &.lg {
+    .title,
+    .description {
+      padding-left: rem(12);
+    }
+
+    .cta {
+      margin-top: rem(14);
+      font-size: rem(22);
+    }
+  }
+
+  @include below(sm) {
+    height: auto;
+    min-height: rem(300);
+  }
+}

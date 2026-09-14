@@ -1,0 +1,26 @@
+@use "abstracts" as *;
+
+.section {
+  @include container(rem(1456));
+  padding-top: rem(79);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: rem(36);
+  margin-top: rem(39);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    > :last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+    gap: rem(24);
+  }
+}

@@ -1,0 +1,53 @@
+@use "abstracts" as *;
+
+.actions {
+  position: fixed;
+  right: rem(27);
+  bottom: rem(28);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: rem(13);
+
+  @include below(sm) {
+    right: rem(16);
+    bottom: rem(16);
+  }
+}
+
+.fab {
+  display: grid;
+  place-items: center;
+  width: rem(64);
+  height: rem(64);
+  border-radius: 50%;
+  font-family: $font-footer;
+  transition:
+    transform 0.4s $ease-out,
+    opacity 0.3s ease,
+    visibility 0.3s;
+
+  @include hover {
+    transform: translateY(rem(-3)) scale(1.04);
+  }
+}
+
+.phone {
+  background: $color-primary;
+  box-shadow: $shadow-fab;
+  color: $color-white;
+  font-size: rem(20);
+}
+
+.top {
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(14) rgba(0, 0, 0, 0.18);
+  color: #1a1a1a;
+  font-size: rem(26);
+
+  &[data-visible="false"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(rem(12));
+  }
+}

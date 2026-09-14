@@ -1,0 +1,64 @@
+@use "abstracts" as *;
+
+.card {
+  min-height: rem(390);
+  padding: rem(36) rem(38) rem(46);
+  border-radius: $radius-md;
+  background: var(--cab-surface, #f5fafd);
+}
+
+.logo {
+  display: inline-grid;
+  place-items: center;
+  height: rem(86);
+  padding: rem(6) rem(8);
+  border-radius: rem(8);
+  background: $color-white;
+
+  img {
+    width: auto;
+    height: rem(68);
+  }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: rem(16);
+  margin-top: rem(40);
+  font-size: rem(25.6);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.locationIcon {
+  flex: none;
+  font-size: rem(21);
+  color: var(--cab-accent-dark, #0078a9);
+}
+
+.label {
+  margin-top: rem(21);
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12) rem(17);
+  margin-top: rem(38);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: rem(48);
+  padding-inline: rem(26);
+  border-radius: $radius-pill;
+  background: var(--cab-soft, #d4effc);
+  color: var(--cab-accent-dark, #0078a9);
+  font-size: rem(18);
+  font-weight: 600;
+}

@@ -1,0 +1,250 @@
+@use "abstracts" as *;
+
+$footer-gutter: rem(69);
+
+.footer {
+  font-family: $font-footer;
+  background: $color-footer-bg;
+  color: $color-footer-link;
+}
+
+.inner {
+  padding: rem(86) $footer-gutter rem(125);
+
+  @include below(sm) {
+    padding: rem(56) rem(24) rem(120);
+  }
+}
+
+.logo {
+  display: flex;
+  width: fit-content;
+  margin-left: rem(5);
+
+  img {
+    width: rem(125);
+    height: auto;
+  }
+}
+
+// ---------- Cabinets ----------
+.cabinets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(19);
+  margin-top: rem(28);
+}
+
+.cabinet {
+  display: flex;
+  align-items: center;
+  gap: rem(19);
+  height: rem(71);
+  padding-inline: rem(22);
+  border-radius: $radius-sm;
+  background: $color-white;
+  transition:
+    transform 0.4s $ease-out,
+    box-shadow 0.4s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-3));
+    box-shadow: 0 rem(8) rem(20) rgba(0, 147, 214, 0.15);
+  }
+}
+
+.cabinetLogo {
+  width: auto;
+  height: rem(35);
+
+  li:last-child & {
+    height: rem(36.5);
+  }
+}
+
+.cabinetTagline {
+  width: rem(184);
+  font-size: rem(14.4);
+  line-height: rem(20);
+  white-space: pre-line;
+  color: $color-footer-muted;
+}
+
+// ---------- Colonnes ----------
+.columns {
+  display: grid;
+  // Proportions de la maquette (448 / 355 / 356 / 434), fluides.
+  grid-template-columns: minmax(0, 448fr) minmax(0, 355fr) minmax(0, 356fr) minmax(0, 431fr);
+  margin-top: rem(61);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(40);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sitemap {
+  display: grid;
+  grid-template-columns: minmax(0, 217fr) minmax(0, 231fr);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  font-size: rem(18);
+  line-height: rem(38.5);
+  transition: color 0.2s ease;
+
+  @include hover {
+    color: $color-primary;
+  }
+}
+
+.column {
+  padding-top: rem(4);
+}
+
+.heading {
+  margin-bottom: rem(14);
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: rem(24);
+  color: $color-footer-heading;
+}
+
+.contact {
+  .link {
+    line-height: rem(34);
+  }
+}
+
+.glyph {
+  font-size: rem(12);
+}
+
+.addresses {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-size: rem(17);
+  line-height: rem(29);
+}
+
+.newsletter {
+  max-width: rem(434);
+}
+
+.form {
+  position: relative;
+  display: flex;
+  height: rem(55);
+  margin-top: rem(16);
+  border: 1.5px solid $color-primary;
+  border-radius: $radius-pill;
+  background: $color-white;
+  overflow: hidden;
+
+  &:focus-within {
+    box-shadow: 0 0 0 rem(4) rgba($color-primary, 0.2);
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding-inline: rem(22);
+  border: 0;
+  background: transparent;
+  font-size: rem(16.8);
+  color: $color-footer-heading;
+
+  &::placeholder {
+    color: #bfbfbf;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit {
+  flex: none;
+  width: rem(152);
+  margin: -1.5px -1.5px -1.5px 0;
+  border-radius: $radius-pill;
+  background: $color-primary;
+  color: $color-white;
+  font-size: rem(16.8);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background: #0081bd;
+  }
+}
+
+.legal {
+  margin-top: rem(9);
+  font-size: rem(13.2);
+  line-height: rem(20);
+  color: $color-footer-legal;
+}
+
+// ---------- Barre basse ----------
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(24);
+  min-height: rem(87);
+  padding: rem(16) $footer-gutter;
+  background: $color-primary;
+  color: $color-white;
+
+  @include below(sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: rem(24);
+  }
+}
+
+.copyright {
+  font-size: rem(15.45);
+  line-height: 1.5;
+
+  a {
+    @include hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  gap: rem(12);
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: rem(44);
+  height: rem(44);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  font-size: rem(14);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-white;
+    color: $color-primary;
+  }
+}

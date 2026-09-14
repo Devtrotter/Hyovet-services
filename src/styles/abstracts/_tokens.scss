@@ -1,0 +1,143 @@
+@use "functions" as *;
+
+// ---------- Couleurs ----------
+$color-black: #000;
+$color-white: #fff;
+$color-text: #000;
+
+$color-sky: #44b2f8; // CTA header
+$color-primary: #0093d6; // footer, newsletter, FAB
+$color-ocean: #0078a9; // boutons pages expertise
+$color-deep: #0071a2; // bandeau contact
+$color-muted: #4d4c4c; // textes secondaires
+$color-green: #5cce7a;
+$color-salmon: #e38a75;
+$color-gold: #dcb85e;
+$color-blue: #61a9df;
+
+$color-placeholder: #d9d9d9;
+
+$color-footer-bg: #dff5fc;
+$color-footer-heading: #333;
+$color-footer-link: #4d4d4d;
+$color-footer-muted: #949494;
+$color-footer-legal: #8a8a8a;
+
+// Déclinaisons des cartes "Publications & actualités"
+$tones: (
+  "orange": (
+    bg: #fff4f0,
+    accent: #ff4400,
+    meta: #f56b38,
+  ),
+  "amber": (
+    bg: #fff9ec,
+    accent: #ffae00,
+    meta: #ffae00,
+  ),
+  "azure": (
+    bg: #eaf6ff,
+    accent: #0092ff,
+    meta: #0092ff,
+  ),
+);
+
+// Étapes "Comment on travaille" (page Expertise)
+$step-tones: (
+  "blue": (
+    bg: #d4effc,
+    accent: #00b7ef,
+  ),
+  "green": (
+    bg: #e7f6e9,
+    accent: #4fc46f,
+  ),
+  "gold": (
+    bg: #fdf2db,
+    accent: #eeb531,
+  ),
+);
+
+// Cabinets : couleurs de marque appliquées via variables CSS (--cab-*)
+$cabinet-themes: (
+  "hyovet": (
+    accent: #00b7ef,
+    accent-dark: #0078a9,
+    soft: #d4effc,
+    surface: #f5fafd,
+    hero-from: #57c5e6,
+    hero-to: #80cbe2,
+  ),
+  "surfonds": (
+    accent: #b0467b,
+    accent-dark: #8e2f5f,
+    soft: #f6dce8,
+    surface: #faeef3,
+    hero-from: #c081a1,
+    hero-to: #c99eb3,
+  ),
+);
+
+// Cartes "Nos valeurs"
+$value-tones: (
+  "blue": (bg: #d4effc, accent: #00b7ef),
+  "green": (bg: #e7f6e9, accent: #4fc46f),
+  "gold": (bg: #fdf2db, accent: #eeb531),
+  "plum": (bg: #f3dbe7, accent: #b0467b),
+  "rose": (bg: #fbe9ef, accent: #d0668f),
+  "mauve": (bg: #f3e9f1, accent: #8e4e7c),
+);
+
+// Couleurs "pastille" (chiffres clés, badges départements)
+$accents: (
+  "green": $color-green,
+  "salmon": $color-salmon,
+  "gold": $color-gold,
+  "blue": $color-blue,
+  // pages de détail expertise
+  "emerald": #4fc46f,
+  "coral": #f08666,
+  "sun": #eeb531,
+  "cyan": #00b7ef,
+);
+
+// Prestations "Ce qu'on fait" (pages de détail expertise)
+$service-tones: (
+  "blue": (
+    bg: #d4effc,
+    accent: #0078a9,
+  ),
+  "green": (
+    bg: #e7f6e9,
+    accent: #039142,
+  ),
+  "gold": (
+    bg: #fdf2db,
+    accent: #eeb531,
+  ),
+  "salmon": (
+    bg: #ffece5,
+    accent: #d05833,
+  ),
+);
+
+// ---------- Rayons ----------
+$radius-sm: rem(14);
+$radius-md: rem(24);
+$radius-lg: rem(36);
+$radius-pill: 999px;
+
+// ---------- Ombres ----------
+$shadow-header: 0 rem(4) rem(10) rgba(0, 0, 0, 0.2);
+$shadow-card: 0 rem(6) rem(12) rgba(0, 0, 0, 0.18);
+$shadow-soft: 0 rem(4) rem(24) rgba(0, 0, 0, 0.05);
+$shadow-banner: 0 rem(6) rem(18) rgba(0, 147, 214, 0.1);
+$shadow-fab: 0 rem(8) rem(24) rgba(0, 147, 214, 0.35);
+
+// ---------- Typo ----------
+$font-heading: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-footer: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+// ---------- Layout ----------
+$page-gutter: rem(24);
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);

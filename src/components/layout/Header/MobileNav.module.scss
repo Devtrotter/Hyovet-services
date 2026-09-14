@@ -1,0 +1,98 @@
+@use "abstracts" as *;
+
+.toggle {
+  display: none;
+  place-items: center;
+  width: rem(60);
+  height: rem(60);
+  border-radius: $radius-md;
+  background: $color-sky;
+  color: $color-white;
+  font-size: rem(28);
+
+  @include below(lg) {
+    display: grid;
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + #{rem(12)});
+  left: 0;
+  right: 0;
+  max-height: calc(100svh - #{rem(120)});
+  overflow-y: auto;
+  padding: rem(16);
+  border-radius: $radius-md;
+  background: $color-white;
+  box-shadow: $shadow-header;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(rem(-8));
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s $ease-out,
+    visibility 0s linear 0.35s;
+
+  &[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.35s $ease-out;
+  }
+
+  ul {
+    display: grid;
+    gap: rem(4);
+  }
+
+  @include above(lg) {
+    display: none;
+  }
+}
+
+.link {
+  display: block;
+  padding: rem(14) rem(16);
+  border-radius: $radius-sm;
+  font-size: rem(20);
+  font-weight: 500;
+
+  @include hover {
+    background: rgba($color-sky, 0.1);
+  }
+}
+
+.subList {
+  display: grid;
+  margin: 0 0 rem(6) rem(16);
+  padding-left: rem(12);
+  border-left: 2px solid rgba($color-sky, 0.35);
+}
+
+.subLink {
+  display: block;
+  padding: rem(9) rem(12);
+  border-radius: $radius-sm;
+  font-size: rem(17);
+  color: $color-muted;
+
+  @include hover {
+    background: rgba($color-sky, 0.1);
+    color: $color-black;
+  }
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(8);
+  padding: rem(16);
+  border-radius: $radius-md;
+  background: $color-sky;
+  color: $color-white;
+  font-size: rem(20);
+  font-weight: 600;
+}

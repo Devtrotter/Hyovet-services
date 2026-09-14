@@ -1,0 +1,163 @@
+@use "abstracts" as *;
+
+.inner {
+  @include container(rem(1600));
+
+  @include above(lg) {
+    translate: rem(-4) 0;
+  }
+}
+
+.plain {
+  padding-block: rem(80) 0;
+}
+
+.tinted {
+  padding-block: rem(54) rem(55);
+  background: var(--cab-surface, #f5fafd);
+}
+
+.title {
+  font-size: rem(45);
+  font-weight: 600;
+  line-height: 1.5;
+
+  @include below(sm) {
+    font-size: rem(36);
+    line-height: 1.25;
+  }
+}
+
+.subtitle {
+  margin-top: rem(9);
+  font-size: rem(24);
+  line-height: 1.5;
+}
+
+.group {
+  margin-top: rem(27);
+
+  & + & {
+    margin-top: rem(61);
+  }
+}
+
+.groupLabel {
+  font-size: rem(24.4);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: rem(24.5);
+  margin-top: rem(27);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(16);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: rem(24);
+  border-radius: $radius-md;
+  text-align: center;
+  transition: transform 0.45s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-4));
+  }
+}
+
+.photo {
+  width: rem(96);
+  height: rem(96);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  margin-top: rem(12.5);
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.role {
+  margin-top: rem(15);
+  font-size: rem(17);
+  line-height: rem(26);
+  color: #767676;
+  white-space: pre-line;
+}
+
+.linkedin {
+  display: grid;
+  place-items: center;
+  width: rem(48);
+  height: rem(48);
+  margin-top: rem(27);
+  border-radius: rem(4);
+  font-size: rem(22);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+// Déclinaisons de couleur par groupe
+.blue {
+  .card {
+    background: #f5fafd;
+  }
+
+  .linkedin {
+    background: #d4effc;
+    color: #00b7ef;
+
+    @include hover {
+      background: #00b7ef;
+      color: $color-white;
+    }
+  }
+}
+
+.green {
+  .card {
+    background: #e7f6e9;
+  }
+
+  .linkedin {
+    background: #c2fbc9;
+    color: #4fc46f;
+
+    @include hover {
+      background: #4fc46f;
+      color: $color-white;
+    }
+  }
+}
+
+.white {
+  .card {
+    background: $color-white;
+  }
+
+  .linkedin {
+    background: var(--cab-soft, #d4effc);
+    color: var(--cab-accent, #00b7ef);
+
+    @include hover {
+      background: var(--cab-accent, #00b7ef);
+      color: $color-white;
+    }
+  }
+}

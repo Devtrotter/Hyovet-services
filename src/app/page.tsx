@@ -1,69 +1,43 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { MediaHero } from "@/components/sections/MediaHero/MediaHero";
+import { KeyFigures } from "@/components/sections/KeyFigures/KeyFigures";
+import { NewsSection } from "@/components/sections/NewsSection/NewsSection";
+import { hero, keyFigures, news, zones } from "@/content/home";
+import { site } from "@/content/site";
+import { Needs } from "@/sections/home/Needs/Needs";
+import { Zones } from "@/components/sections/Zones/Zones";
 
-export default function Home() {
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VeterinaryCare",
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  telephone: site.phone.label,
+  email: site.email.label,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "5 Parc Activités du Carrefour",
+    postalCode: "22640",
+    addressLocality: "Plestan",
+    addressCountry: "FR",
+  },
+  areaServed: ["Bretagne", "Pays de la Loire"],
+};
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+      <MediaHero id="hero-title" variant="home" {...hero} />
+      <KeyFigures figures={keyFigures} />
+      <Needs />
+      <Zones id="zones-title" title={zones.title} subtitle={zones.subtitle} items={zones.items} />
+      <NewsSection id="news-title" title={news.title} items={news.items} />
+      <ScrollReveal />
+    </>
   );
 }

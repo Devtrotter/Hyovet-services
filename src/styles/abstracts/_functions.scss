@@ -1,0 +1,14 @@
+@use "sass:math";
+
+// La maquette est dessinée sur un frame de 1728px.
+// Toutes les valeurs sont saisies en px "maquette" puis converties en rem :
+// à 1728px de viewport, 1rem = 16px => rendu pixel perfect,
+// en dessous, la racine se réduit (cf. globals.scss) et toute l'interface suit.
+$design-root: 16;
+
+@function rem($px) {
+  @if $px == 0 {
+    @return 0;
+  }
+  @return math.div($px, $design-root) * 1rem;
+}

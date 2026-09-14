@@ -1,0 +1,123 @@
+@use "sass:map";
+@use "abstracts" as *;
+
+.section {
+  @include container(rem(1479));
+}
+
+.home {
+  padding-top: rem(121);
+  padding-bottom: rem(89);
+}
+
+.proofs {
+  padding-top: rem(90);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(77);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: rem(48);
+  margin-top: rem(47);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(32);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+    gap: rem(24);
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: rem(24);
+  border-radius: $radius-lg;
+  transition: transform 0.45s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-6));
+
+    .image {
+      transform: scale(1.05);
+    }
+  }
+
+  &:focus-within {
+    outline: 3px solid $color-primary;
+    outline-offset: 3px;
+  }
+}
+
+@each $name, $tone in $tones {
+  .#{$name} {
+    background: map.get($tone, bg);
+
+    .meta {
+      color: map.get($tone, meta);
+    }
+  }
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 413 / 303;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-placeholder;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 1s $ease-out;
+}
+
+.badge {
+  position: absolute;
+  top: rem(24);
+  right: rem(24);
+  padding-inline: rem(17);
+}
+
+.title {
+  margin-top: rem(25);
+  font-size: rem(29.2);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.link {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.excerpt {
+  margin-top: rem(23);
+  font-size: rem(21);
+  line-height: rem(32);
+}
+
+.meta {
+  margin-top: auto;
+  padding-top: rem(45);
+  font-size: rem(21.6);
+  line-height: 1.5;
+}

@@ -1,0 +1,50 @@
+@use "abstracts" as *;
+
+.timeline {
+  display: grid;
+  gap: rem(22);
+  min-height: rem(390);
+  padding: rem(24) rem(40) rem(29) rem(47);
+  border-radius: $radius-md;
+  background: #f5fafd;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: rem(24) minmax(0, 1fr);
+  column-gap: rem(34);
+}
+
+.dot {
+  width: rem(24);
+  height: rem(24);
+  margin-top: rem(15);
+  border-radius: 50%;
+}
+
+.hyovet {
+  background: #00b7ef;
+}
+
+.surfonds {
+  background: #b0467b;
+}
+
+.group {
+  background: #4d4c4c;
+}
+
+.title {
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: rem(40);
+  color: #3a3a3a;
+}
+
+.description {
+  max-width: rem(470);
+  margin-top: rem(2);
+  font-size: rem(18);
+  line-height: rem(27);
+  color: #767676;
+}

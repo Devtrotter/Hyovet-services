@@ -1,0 +1,201 @@
+@use "abstracts" as *;
+
+.header {
+  position: sticky;
+  top: $page-gutter;
+  z-index: 50;
+  margin: $page-gutter $page-gutter 0;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: rem(72);
+  padding: 0 rem(6) 0 rem(18);
+  border-radius: $radius-md;
+  background: $color-white;
+  box-shadow: $shadow-header;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(22);
+  border-radius: $radius-sm;
+}
+
+.mark {
+  width: rem(60);
+  height: auto;
+}
+
+.brandName {
+  font-size: rem(16);
+  font-weight: 400;
+  line-height: 1;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include below(lg) {
+    display: none;
+  }
+}
+
+.navList {
+  display: flex;
+  gap: rem(24);
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding-block: rem(6);
+  font-size: rem(17.7);
+  font-weight: 500;
+  line-height: 1.5;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: $color-sky;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s $ease-out;
+  }
+
+  @include hover {
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+// ---------- Menu déroulant ----------
+.hasDropdown {
+  position: relative;
+
+  // zone tampon invisible pour garder le survol entre le lien et le panneau
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: rem(-20);
+    right: rem(-20);
+    height: rem(22);
+  }
+
+  &:hover,
+  &:focus-within {
+    .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+      transition:
+        opacity 0.25s ease,
+        transform 0.35s $ease-out;
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + #{rem(18)});
+  left: 50%;
+  z-index: 10;
+  width: rem(420);
+  padding: rem(10);
+  border-radius: $radius-md;
+  background: $color-white;
+  box-shadow: 0 rem(18) rem(40) rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, rem(-8));
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s $ease-out,
+    visibility 0s linear 0.3s;
+}
+
+.dropdownList {
+  display: grid;
+  gap: rem(2);
+}
+
+.dropdownLink {
+  display: flex;
+  flex-direction: column;
+  gap: rem(2);
+  padding: rem(12) rem(16);
+  border-radius: $radius-sm;
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background: rgba($color-sky, 0.1);
+
+    .dropdownLabel {
+      color: $color-primary;
+    }
+  }
+
+  &:focus-visible {
+    outline-offset: -3px;
+  }
+}
+
+.dropdownLabel {
+  font-size: rem(17);
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.dropdownDescription {
+  font-size: rem(14);
+  line-height: 1.4;
+  color: $color-muted;
+}
+
+.dropdownAll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: rem(6);
+  padding: rem(14) rem(16);
+  border-radius: $radius-sm;
+  background: #f5fafd;
+  font-size: rem(15);
+  font-weight: 600;
+  color: $color-primary;
+
+  svg {
+    transition: transform 0.3s $ease-out;
+  }
+
+  @include hover {
+    svg {
+      transform: translateX(rem(4));
+    }
+  }
+}
+
+.cta {
+  @include below(lg) {
+    display: none;
+  }
+}

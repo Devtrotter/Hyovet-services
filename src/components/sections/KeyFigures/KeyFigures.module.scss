@@ -1,0 +1,93 @@
+@use "abstracts" as *;
+
+.section {
+  position: relative;
+  z-index: 1;
+  padding: rem(24);
+  background: $color-white;
+
+  @include below(sm) {
+    padding: rem(16);
+  }
+}
+
+// Accueil : bloc chevauchant le grand hero
+.home {
+  @include container(rem(1152));
+  margin-top: rem(-117);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+
+  // La maquette décale le bloc de 18px vers la gauche sur desktop.
+  @include above(lg) {
+    translate: rem(-18) 0;
+  }
+}
+
+// Pages de détail : bloc plus large et plus compact
+.compact {
+  @include container(rem(1468));
+  margin-top: rem(-90);
+  border-radius: $radius-md;
+  box-shadow: 0 rem(24) rem(40) rgba(0, 0, 0, 0.3);
+
+  .card {
+    height: rem(132);
+    border-radius: $radius-md;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: rem(24);
+
+  @include below(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(16);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(6);
+  height: rem(192);
+  border-radius: $radius-lg;
+  color: $color-white;
+  text-align: center;
+  transition: transform 0.45s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-4));
+  }
+
+  @include below(sm) {
+    height: rem(150);
+    border-radius: $radius-md;
+  }
+}
+
+@each $name, $color in $accents {
+  .#{$name} {
+    background: $color;
+  }
+}
+
+.value {
+  font-size: rem(50);
+  font-weight: 700;
+  line-height: rem(72);
+
+  @include below(sm) {
+    font-size: rem(40);
+  }
+}
+
+.label {
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1.5;
+}
