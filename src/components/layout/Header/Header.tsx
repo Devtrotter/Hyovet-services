@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button/Button";
 import { contactLink, mainNav } from "@/content/site";
 import styles from "./Header.module.scss";
 import { MobileNav } from "./MobileNav";
+import { NavDropdown } from "./NavDropdown";
 
 export function Header() {
   return (
@@ -28,11 +29,11 @@ export function Header() {
           <ul className={styles.navList}>
             {mainNav.map((link) =>
               link.children ? (
-                <li key={link.href} className={styles.hasDropdown}>
+                <NavDropdown key={link.href} className={styles.hasDropdown}>
                   <Link href={link.href} className={styles.navLink} aria-haspopup="true">
                     {link.label}
                   </Link>
-                  {/* Ouverture CSS au survol et au focus clavier (:focus-within), sans JavaScript */}
+                  {/* Ouverture CSS au survol et au focus clavier (:focus-within) ; fermeture au clic via NavDropdown */}
                   <div className={styles.dropdown}>
                     <ul className={styles.dropdownList}>
                       {link.children.map((child) => (
@@ -52,7 +53,7 @@ export function Header() {
                       </Link>
                     )}
                   </div>
-                </li>
+                </NavDropdown>
               ) : (
                 <li key={link.href}>
                   <Link href={link.href} className={styles.navLink}>

@@ -18,9 +18,11 @@ src/
 │   ├── expertise/page.tsx    nos domaines d'expertise
 │   ├── expertise/[slug]/     détail d'une expertise (5 pages pré-rendues via generateStaticParams)
 │   ├── cabinets/page.tsx     groupe Hyovet Services
-│   └── cabinets/[slug]/      Hyovet et Selas de Surfonds (thème de marque via variables CSS --cab-*)
+│   ├── cabinets/[slug]/      Hyovet et Selas de Surfonds (thème de marque via variables CSS --cab-*)
+│   ├── contact/page.tsx      formulaire + coordonnées des cabinets + carte
+│   └── api/contact/route.ts  validation du formulaire (honeypot, consentement) — envoi email à brancher
 ├── content/                  textes & données typés (futur branchement CMS Firebase)
-│   ├── home.ts · expertise.ts · expertises.ts · cabinets.ts (pages + menus) · site.ts · types.ts
+│   ├── home.ts · expertise.ts · expertises.ts · cabinets.ts · contact.ts · site.ts · types.ts
 ├── styles/
 │   ├── abstracts/            rem(), tokens (couleurs, rayons, ombres), mixins (breakpoints, container)
 │   └── globals.scss          reset + racine fluide
@@ -36,7 +38,8 @@ src/
 │   ├── home/                 KeyFigures, Needs, Zones (accordéon + Google Maps), News
 │   ├── expertise/            Domains (grille de cartes), Method (étapes + bandeau publications)
 │   ├── expertise-detail/     Services (« Ce qu'on fait »), Situations (« Pour qui, quand ? »)
-│   └── cabinets/             GroupHero, Timeline, CabinetsShowcase, CabinetHero, CabinetInfoCard
+│   ├── cabinets/             GroupHero, Timeline, CabinetsShowcase, CabinetHero, CabinetInfoCard
+│   └── contact/              ContactForm, CabinetContactCard, NetworkMap
 └── lib/                      gsap (chargement différé), format
 ```
 
@@ -63,4 +66,5 @@ src/
 ## À faire hors maquette
 
 - Newsletter : brancher `NewsletterForm` sur une route API Brevo.
+- Contact : `/api/contact` valide les données ; brancher l'envoi de la notification email (adresse unique du client).
 - Google Maps dépose des cookies tiers : prévoir le consentement RGPD (ou un clic pour charger la carte).

@@ -100,8 +100,8 @@
     height: rem(22);
   }
 
-  &:hover,
-  &:focus-within {
+  &:not([data-dismissed]):hover,
+  &:not([data-dismissed]):focus-within {
     .dropdown {
       opacity: 1;
       visibility: visible;

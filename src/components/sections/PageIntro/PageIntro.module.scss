@@ -1,0 +1,32 @@
+@use "abstracts" as *;
+
+.intro {
+  padding: rem(61) $page-gutter rem(86);
+  text-align: center;
+
+  @include below(md) {
+    padding-block: rem(40) rem(48);
+  }
+}
+
+.title {
+  font-size: rem(48);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+
+  @include below(sm) {
+    font-size: rem(36);
+  }
+}
+
+.subtitle {
+  margin-top: rem(3);
+  font-size: rem(24);
+  line-height: 1.5;
+  color: #767676;
+
+  @include below(sm) {
+    font-size: rem(19);
+  }
+}

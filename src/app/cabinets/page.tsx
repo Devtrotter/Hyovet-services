@@ -5,16 +5,28 @@ import { TeamSection } from "@/components/sections/TeamSection/TeamSection";
 import { ValuesSection } from "@/components/sections/ValuesSection/ValuesSection";
 import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
 import { groupPage } from "@/content/cabinets";
+import { breadcrumbJsonLd, organizationId, pageMetadata, serializeJsonLd, teamJsonLd } from "@/lib/seo";
 import { contactBanner } from "@/content/site";
 import { CabinetsShowcase } from "@/sections/cabinets/CabinetsShowcase/CabinetsShowcase";
 import { GroupHero } from "@/sections/cabinets/GroupHero/GroupHero";
 import { Timeline } from "@/sections/cabinets/Timeline/Timeline";
 import styles from "./cabinets.module.scss";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Nos cabinets vétérinaires porcins — Hyovet & Selas de Surfonds",
   description: groupPage.hero.subtitle,
-  alternates: { canonical: "/cabinets" },
+  path: "/cabinets",
+});
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbJsonLd([
+      { label: "Accueil", href: "/" },
+      { label: "Cabinets", href: "/cabinets" },
+    ]),
+    ...teamJsonLd(groupPage.team, organizationId),
+  ],
 };
 
 export default function CabinetsPage() {
@@ -26,6 +38,7 @@ export default function CabinetsPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <GroupHero breadcrumb={breadcrumb} {...groupPage.hero} />
       <IntroSplit
         id="adn-title"

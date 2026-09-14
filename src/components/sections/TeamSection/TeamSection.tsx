@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FaLinkedinIn } from "react-icons/fa6";
+import { RiLinkedinFill, RiUserFill } from "react-icons/ri";
 import type { TeamContent, TeamMember } from "@/content/types";
 import { cx } from "@/lib/format";
 import styles from "./TeamSection.module.scss";
@@ -7,9 +7,15 @@ import styles from "./TeamSection.module.scss";
 function MemberCard({ name, role, photo, linkedin }: TeamMember) {
   return (
     <li className={styles.card} data-reveal>
-      <Image src={photo} alt={`Portrait de ${name}`} width={96} height={96} sizes="96px" className={styles.photo} />
+      {photo ? (
+        <Image src={photo} alt={`Portrait de ${name}`} width={96} height={96} sizes="96px" className={styles.photo} />
+      ) : (
+        <span className={styles.avatar} aria-hidden>
+          <RiUserFill />
+        </span>
+      )}
       <h4 className={styles.name}>{name}</h4>
-      <p className={styles.role}>{role}</p>
+      {role && <p className={styles.role}>{role}</p>}
       {linkedin && (
         <a
           href={linkedin}
@@ -18,7 +24,7 @@ function MemberCard({ name, role, photo, linkedin }: TeamMember) {
           rel="noopener noreferrer"
           aria-label={`Profil LinkedIn de ${name}`}
         >
-          <FaLinkedinIn aria-hidden />
+          <RiLinkedinFill aria-hidden />
         </a>
       )}
     </li>

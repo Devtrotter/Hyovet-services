@@ -17,7 +17,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         {items.map((item, index) => {
           const isCurrent = index === items.length - 1;
           return (
-            <Fragment key={item.href}>
+            <Fragment key={`${item.href}-${index}`}>
               {index > 0 && (
                 <li className={styles.separator} aria-hidden="true">
                   /

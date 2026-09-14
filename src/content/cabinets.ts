@@ -3,17 +3,81 @@ import type { CabinetPage, NavLink, TeamMember, ValuesContent } from "./types";
 
 // Pages "Les cabinets" : groupe Hyovet Services + une page par cabinet.
 // Hyovet reprend la maquette ; Selas de Surfonds est personnalisée à partir de l'arborescence client.
-// Portraits, noms et zones : contenus provisoires à remplacer via le CMS.
+// Zones : contenus provisoires à remplacer via le CMS.
 
-const placeholderMember: TeamMember = {
-  name: "Dr Anne Le Goff",
-  role: "Vétérinaire associée — Hyovet\nPrésidente du groupe",
-  photo: "/images/team/placeholder.jpg",
-  linkedin: "https://www.linkedin.com/",
-};
+// Trombinoscopes — portraits recadrés dans /images/team/<dossier>.
+// Sans photo, la carte affiche un avatar aux couleurs du thème ; sans profil, pas de bouton LinkedIn.
+const teamMember =
+  (folder: string) =>
+  (name: string, { photo, linkedin }: { photo?: string; linkedin?: string } = {}): TeamMember => ({
+    name,
+    photo: photo && `/images/team/${folder}/${photo}.jpg`,
+    linkedin: linkedin && `https://www.linkedin.com/in/${linkedin}/`,
+  });
 
-const members = (count: number, role = placeholderMember.role): TeamMember[] =>
-  Array.from({ length: count }, () => ({ ...placeholderMember, role }));
+const hyovetServiceMember = teamMember("hyovetservice");
+const hyovetMember = teamMember("hyovet");
+const surfondsMember = teamMember("surfonds");
+
+const operationalTeam: TeamMember[] = [
+  hyovetServiceMember("Guillaume Bartet", { photo: "guillaume-bartet", linkedin: "guillaume-bartet-5072a544" }),
+  hyovetServiceMember("Laura Noffe", { photo: "laura-noffe", linkedin: "laura-noffe" }),
+  hyovetServiceMember("Camille Ousset", { photo: "camille-ousset" }),
+  hyovetServiceMember("Céline Chauvel", { photo: "celine-chauvel", linkedin: "c%C3%A9line-chauvel" }),
+  hyovetServiceMember("Gwenaël Choupaux"),
+  hyovetServiceMember("Karine Andrieux", { photo: "karine-andrieux", linkedin: "karine-andrieux-04757737a" }),
+  hyovetServiceMember("Sophie Destouches", { photo: "sophie-destouches", linkedin: "sophie-destouches-849430306" }),
+  hyovetServiceMember("Magali Ferte", { photo: "magali-ferte", linkedin: "magali-ferte-6258363b8" }),
+  hyovetServiceMember("Alicia Lormel", { linkedin: "alicia-lormel-50270720b" }),
+  hyovetServiceMember("Marina Rouxel", { photo: "marina-rouxel" }),
+];
+
+const technicianTeam: TeamMember[] = [
+  hyovetServiceMember("Audrey Soulabaille", { linkedin: "audrey-soulabaille-b42952127" }),
+  hyovetServiceMember("Pierre Cade"),
+  hyovetServiceMember("Laëtitia Faes"), // profil à confirmer (mention Cooperl)
+  hyovetServiceMember("Ludivine Engoulvent"),
+];
+
+// Portraits extraits des trombinoscopes vétérinaires — à remplacer par les photos originales.
+const hyovetVets: TeamMember[] = [
+  hyovetMember("Fanny Brun", { photo: "fanny-brun", linkedin: "fanny-brun-814521109" }),
+  hyovetMember("Elisabeth Chabeauti", { photo: "elisabeth-chabeauti" }),
+  hyovetMember("Isabelle Delaunay", { photo: "isabelle-delaunay" }),
+  hyovetMember("Camille Demoitié", { photo: "camille-demoitie", linkedin: "camille-demoiti%C3%A9-31238718b" }),
+  hyovetMember("Nathalie Deville", { photo: "nathalie-deville" }),
+  hyovetMember("Matthieu Froget", { photo: "matthieu-froget" }),
+  hyovetMember("Inés García Viñado", {
+    photo: "ines-garcia-vinado",
+    linkedin: "in%C3%A9s-garc%C3%ADa-vi%C3%B1ado-0b14b178",
+  }),
+  hyovetMember("Héloïse Guillou-Mouchet", {
+    photo: "heloise-guillou-mouchet",
+    linkedin: "h%C3%A9lo%C3%AFse-guillou-mouchet-4639731ba",
+  }),
+  hyovetMember("Adélaïde Maligorne", { photo: "adelaide-maligorne" }),
+  hyovetMember("Michel Ouisse", { photo: "michel-ouisse" }),
+  hyovetMember("Christine Puech", { photo: "christine-puech" }),
+  hyovetMember("Christophe Renoult", { photo: "christophe-renoult", linkedin: "christophe-renoult-b07906222" }),
+  hyovetMember("Jessica Rouillier", { photo: "jessica-rouillier" }),
+  hyovetMember("Jean-Noël Sialelli", {
+    photo: "jean-noel-sialelli",
+    linkedin: "jean-no%C3%ABl-sialelli-a669501a2",
+  }),
+  hyovetMember("Karine Thirouard", { photo: "karine-thirouard" }),
+  hyovetMember("Hervé Tosser", { photo: "herve-tosser" }),
+];
+
+const surfondsVets: TeamMember[] = [
+  surfondsMember("Thibaut Billy", { photo: "thibaut-billy", linkedin: "thibaut-billy-a2655b15b" }),
+  surfondsMember("Marius Bota", { photo: "marius-bota", linkedin: "marius-bota-a2613830b" }),
+  surfondsMember("Julie Crepon-Lavergne", {
+    photo: "julie-crepon-lavergne",
+    linkedin: "julie-lavergne-crepon-020a10215",
+  }),
+  surfondsMember("Annette Fichtl", { photo: "annette-fichtl" }),
+  surfondsMember("Christian Spindler", { photo: "christian-spindler" }),
+];
 
 export const groupValues: ValuesContent = {
   title: "Nos valeurs",
@@ -81,8 +145,8 @@ export const groupPage = {
     title: "L'équipe Hyovet Services",
     subtitle: "Ce qui guide les deux équipes, au cabinet comme en élevage.",
     groups: [
-      { label: "Les vétérinaires", tone: "blue" as const, members: members(4) },
-      { label: "L'équipe technique", tone: "green" as const, members: members(4) },
+      { label: "Opérationnel", jobTitle: "Opérationnel", tone: "blue" as const, members: operationalTeam },
+      { label: "Les techniciens", jobTitle: "Technicien", tone: "green" as const, members: technicianTeam },
     ],
   },
   cabinets: {
@@ -151,7 +215,7 @@ export const cabinetPages: CabinetPage[] = [
     team: {
       title: "L'équipe Hyovet Services",
       subtitle: "Ce qui guide les deux équipes, au cabinet comme en élevage.",
-      groups: [{ label: "Les vétérinaires", tone: "white", members: members(4) }],
+      groups: [{ label: "Les vétérinaires", jobTitle: "Vétérinaire", tone: "white", members: hyovetVets }],
     },
   },
   {
@@ -225,8 +289,9 @@ export const cabinetPages: CabinetPage[] = [
       groups: [
         {
           label: "Les vétérinaires",
+          jobTitle: "Vétérinaire",
           tone: "white",
-          members: members(4, "Vétérinaire associée — Surfonds\nSuivi d'élevage"),
+          members: surfondsVets,
         },
       ],
     },

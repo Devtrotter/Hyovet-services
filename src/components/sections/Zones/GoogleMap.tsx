@@ -7,6 +7,7 @@ import styles from "./Zones.module.scss";
 interface GoogleMapProps {
   view: MapView;
   title: string;
+  className?: string;
 }
 
 // `query` (optionnel) affiche un marqueur sur le lieu du cabinet.
@@ -19,7 +20,7 @@ const buildSrc = ({ lat, lng, zoom, query }: MapView) =>
  * Google Maps embarquée, montée uniquement à l'approche du viewport
  * (aucune requête Google tant que la section n'est pas proche => pas d'impact sur le chargement initial).
  */
-export function GoogleMap({ view, title }: GoogleMapProps) {
+export function GoogleMap({ view, title, className }: GoogleMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isNear, setIsNear] = useState(false);
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
@@ -42,7 +43,7 @@ export function GoogleMap({ view, title }: GoogleMapProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className={styles.map} data-reveal>
+    <div ref={containerRef} className={className ? `${styles.map} ${className}` : styles.map} data-reveal>
       {isNear && (
         <iframe
           key={src}

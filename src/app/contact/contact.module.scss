@@ -1,0 +1,61 @@
+@use "abstracts" as *;
+
+.contact {
+  padding-block: rem(96) rem(96);
+  background: #f5fafd;
+
+  @include below(md) {
+    padding-block: rem(40) rem(56);
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 955fr) minmax(0, 497fr);
+  align-items: start;
+  gap: rem(36);
+  @include container(rem(1488));
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Colonne de droite : accroche + une carte par cabinet
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+}
+
+.asideHeading {
+  padding-inline: rem(4);
+}
+
+.asideTitle {
+  font-size: rem(28);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.asideSubtitle {
+  margin-top: rem(6);
+  font-size: rem(20);
+  line-height: 1.5;
+  color: #767676;
+}
+
+.cabinets {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include below(lg) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include below(md) {
+    grid-template-columns: 1fr;
+  }
+}

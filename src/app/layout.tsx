@@ -3,7 +3,9 @@ import { Inter, Poppins } from "next/font/google";
 import { FloatingActions } from "@/components/layout/FloatingActions/FloatingActions";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Header } from "@/components/layout/Header/Header";
+import { ScrollToTop } from "@/components/layout/ScrollToTop/ScrollToTop";
 import { site } from "@/content/site";
+import { baseOpenGraph, organizationJsonLd, serializeJsonLd } from "@/lib/seo";
 import "@/styles/globals.scss";
 
 const poppins = Poppins({
@@ -29,16 +31,18 @@ export const metadata: Metadata = {
     template: "%s | Hyovet Services",
   },
   description: site.description,
-  alternates: { canonical: "/" },
+  applicationName: site.name,
   openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    siteName: site.name,
+    ...baseOpenGraph,
     title: "Hyovet Services — Groupe vétérinaire expert de la filière porcine",
     description: site.description,
-    images: [{ url: "/images/home/hero-poster.jpg", width: 1920, height: 1080 }],
   },
-  robots: { index: true, follow: true },
+  twitter: { card: "summary_large_image" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
 };
 
 export const viewport: Viewport = {
@@ -49,8 +53,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${poppins.variable} ${inter.variable}`}>
+    // data-scroll-behavior : Next désactive le smooth scroll CSS le temps des changements de page.
+    <html lang="fr" className={`${poppins.variable} ${inter.variable}`} data-scroll-behavior="smooth">
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }} />
         <a href="#contenu" className="skip-link">
           Aller au contenu
         </a>
@@ -58,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="contenu">{children}</main>
         <Footer />
         <FloatingActions />
+        <ScrollToTop />
       </body>
     </html>
   );

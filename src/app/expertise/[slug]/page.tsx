@@ -6,7 +6,8 @@ import { KeyFigures } from "@/components/sections/KeyFigures/KeyFigures";
 import { NewsSection } from "@/components/sections/NewsSection/NewsSection";
 import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
 import { expertiseDetails, expertiseHref, getExpertiseDetail } from "@/content/expertises";
-import { contactBanner, site } from "@/content/site";
+import { contactBanner } from "@/content/site";
+import { absoluteUrl, breadcrumbJsonLd, organizationId, pageMetadata, serializeJsonLd } from "@/lib/seo";
 import { Services } from "@/sections/expertise-detail/Services/Services";
 import { Situations } from "@/sections/expertise-detail/Situations/Situations";
 import styles from "./page.module.scss";
@@ -23,12 +24,11 @@ export async function generateMetadata({ params }: PageProps<"/expertise/[slug]"
   const expertise = getExpertiseDetail(slug);
   if (!expertise) return {};
 
-  return {
+  return pageMetadata({
     title: `${expertise.name} — ${expertise.hero.title}`,
     description: expertise.seoDescription,
-    alternates: { canonical: expertiseHref(slug) },
-    openGraph: { title: `${expertise.name} | ${site.name}`, description: expertise.seoDescription },
-  };
+    path: expertiseHref(slug),
+  });
 }
 
 export default async function ExpertiseDetailPage({ params }: PageProps<"/expertise/[slug]">) {
@@ -45,20 +45,13 @@ export default async function ExpertiseDetailPage({ params }: PageProps<"/expert
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: breadcrumb.map((item, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: item.label,
-          item: `${site.url}${item.href}`,
-        })),
-      },
+      breadcrumbJsonLd(breadcrumb),
       {
         "@type": "Service",
         name: expertise.name,
         description: expertise.seoDescription,
-        provider: { "@type": "VeterinaryCare", name: site.name, url: site.url },
+        url: absoluteUrl(expertiseHref(slug)),
+        provider: { "@id": organizationId },
         serviceType: expertise.services.items.map((item) => item.title),
       },
     ],
@@ -66,10 +59,7 @@ export default async function ExpertiseDetailPage({ params }: PageProps<"/expert
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <DetailHero id="detail-title" breadcrumb={breadcrumb} {...expertise.hero} />
       <KeyFigures figures={expertise.figures} variant="compact" label={`${expertise.name} en chiffres`} />
       <Services {...expertise.services} />

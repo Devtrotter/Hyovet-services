@@ -7,7 +7,8 @@ import { ValuesSection } from "@/components/sections/ValuesSection/ValuesSection
 import { Zones } from "@/components/sections/Zones/Zones";
 import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
 import { cabinetPages, getCabinetPage } from "@/content/cabinets";
-import { contactBanner, site } from "@/content/site";
+import { contactBanner } from "@/content/site";
+import { absoluteUrl, breadcrumbJsonLd, cabinetId, organizationId, pageMetadata, serializeJsonLd, teamJsonLd } from "@/lib/seo";
 import { CabinetHero } from "@/sections/cabinets/CabinetHero/CabinetHero";
 import { CabinetInfoCard } from "@/sections/cabinets/CabinetInfoCard/CabinetInfoCard";
 import styles from "../cabinets.module.scss";
@@ -22,12 +23,11 @@ export async function generateMetadata({ params }: PageProps<"/cabinets/[slug]">
   const { slug } = await params;
   const page = getCabinetPage(slug);
   if (!page) return {};
-  return {
+  return pageMetadata({
     title: `${page.name} — ${page.hero.title}`,
     description: page.seoDescription,
-    alternates: { canonical: `/cabinets/${slug}` },
-    openGraph: { title: `${page.name} | ${site.name}`, description: page.seoDescription },
-  };
+    path: `/cabinets/${slug}`,
+  });
 }
 
 export default async function CabinetDetailPage({ params }: PageProps<"/cabinets/[slug]">) {
@@ -43,19 +43,27 @@ export default async function CabinetDetailPage({ params }: PageProps<"/cabinets
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "VeterinaryCare",
-    name: page.name,
-    description: page.seoDescription,
-    parentOrganization: { "@type": "Organization", name: site.name, url: site.url },
-    address: { "@type": "PostalAddress", addressLocality: page.about.location, addressCountry: "FR" },
+    "@graph": [
+      breadcrumbJsonLd(breadcrumb),
+      {
+        "@type": "VeterinaryCare",
+        "@id": cabinetId(slug),
+        name: page.name,
+        url: absoluteUrl(`/cabinets/${slug}`),
+        description: page.seoDescription,
+        logo: absoluteUrl(page.about.logo.src),
+        parentOrganization: { "@id": organizationId },
+        address: { "@type": "PostalAddress", addressLocality: page.about.location, addressCountry: "FR" },
+        areaServed: page.zones.items.flatMap((zone) => zone.departments.map((department) => department.name)),
+        knowsAbout: page.about.specialties,
+      },
+      ...teamJsonLd(page.team, cabinetId(slug)),
+    ],
   };
 
   return (
     <div className={styles[page.theme]}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <CabinetHero breadcrumb={breadcrumb} hero={page.hero} />
       <IntroSplit
         id="about-title"

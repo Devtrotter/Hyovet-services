@@ -85,6 +85,15 @@
   object-fit: cover;
 }
 
+.avatar {
+  display: grid;
+  place-items: center;
+  width: rem(96);
+  height: rem(96);
+  border-radius: 50%;
+  font-size: rem(48);
+}
+
 .name {
   margin-top: rem(12.5);
   font-size: rem(20);
@@ -119,6 +128,11 @@
     background: #f5fafd;
   }
 
+  .avatar {
+    background: #d4effc;
+    color: #00b7ef;
+  }
+
   .linkedin {
     background: #d4effc;
     color: #00b7ef;
@@ -135,6 +149,11 @@
     background: #e7f6e9;
   }
 
+  .avatar {
+    background: #c2fbc9;
+    color: #4fc46f;
+  }
+
   .linkedin {
     background: #c2fbc9;
     color: #4fc46f;
@@ -149,6 +168,11 @@
 .white {
   .card {
     background: $color-white;
+  }
+
+  .avatar {
+    background: var(--cab-soft, #d4effc);
+    color: var(--cab-accent, #00b7ef);
   }
 
   .linkedin {
