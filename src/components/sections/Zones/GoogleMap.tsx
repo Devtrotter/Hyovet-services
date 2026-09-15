@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { FiExternalLink, FiMapPin } from "react-icons/fi";
 import type { MapView } from "@/content/types";
+import { setMapsConsent, useMapsConsent } from "@/lib/maps-consent";
 import styles from "./Zones.module.scss";
 
 interface GoogleMapProps {
@@ -16,15 +19,20 @@ const buildSrc = ({ lat, lng, zoom, query }: MapView) =>
     ? `https://maps.google.com/maps?q=${encodeURIComponent(query)}&ll=${lat},${lng}&z=${zoom}&t=m&hl=fr&output=embed`
     : `https://maps.google.com/maps?ll=${lat},${lng}&z=${zoom}&t=m&hl=fr&output=embed`;
 
+// Lien direct vers Google Maps : ouvert à l'initiative du visiteur, sans contenu tiers embarqué sur le site.
+const buildExternalHref = ({ lat, lng, query }: MapView) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query ?? `${lat},${lng}`)}`;
+
 /**
- * Google Maps embarquée, montée uniquement à l'approche du viewport
- * (aucune requête Google tant que la section n'est pas proche => pas d'impact sur le chargement initial).
+ * Google Maps embarquée, chargée seulement après consentement (RGPD : Google peut déposer des cookies)
+ * puis montée à l'approche du viewport (aucune requête Google tant que la section n'est pas proche).
  */
 export function GoogleMap({ view, title, className }: GoogleMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isNear, setIsNear] = useState(false);
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
   const src = buildSrc(view);
+  const consent = useMapsConsent();
 
   useEffect(() => {
     const el = containerRef.current;
@@ -44,7 +52,26 @@ export function GoogleMap({ view, title, className }: GoogleMapProps) {
 
   return (
     <div ref={containerRef} className={className ? `${styles.map} ${className}` : styles.map} data-reveal>
-      {isNear && (
+      {!consent && (
+        <div className={styles.mapConsent}>
+          <FiMapPin className={styles.mapConsentIcon} aria-hidden />
+          <p className={styles.mapConsentText}>
+            Cette carte est fournie par Google, qui peut déposer des cookies.{" "}
+            <Link href="/politique-de-confidentialite#cookies" className={styles.mapConsentLink}>
+              En savoir plus
+            </Link>
+          </p>
+          <div className={styles.mapConsentActions}>
+            <button type="button" className={styles.mapConsentButton} onClick={() => setMapsConsent(true)}>
+              Afficher la carte
+            </button>
+            <a href={buildExternalHref(view)} target="_blank" rel="noopener noreferrer" className={styles.mapConsentLink}>
+              Ouvrir dans Google Maps <FiExternalLink aria-hidden />
+            </a>
+          </div>
+        </div>
+      )}
+      {consent && isNear && (
         <iframe
           key={src}
           src={src}

@@ -8,6 +8,7 @@ import { site } from "@/content/site";
 import { baseOpenGraph } from "@/lib/seo";
 import { Needs } from "@/sections/home/Needs/Needs";
 import { Zones } from "@/components/sections/Zones/Zones";
+import styles from "./page.module.scss";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -25,8 +26,10 @@ export default function HomePage() {
       <MediaHero id="hero-title" variant="home" {...hero} />
       <KeyFigures figures={keyFigures} />
       <Needs />
-      <Zones id="zones-title" title={zones.title} subtitle={zones.subtitle} items={zones.items} />
-      <NewsSection id="news-title" title={news.title} items={news.items} />
+      <div className={styles.zones}>
+        <Zones id="zones-title" title={zones.title} subtitle={zones.subtitle} items={zones.items} />
+      </div>
+{/*      <NewsSection id="news-title" title={news.title} items={news.items} />*/}
       <ScrollReveal />
     </>
   );

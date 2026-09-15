@@ -2,14 +2,14 @@
 
 .section {
   @include container(rem(1456));
-  padding-top: rem(79);
+  padding-top: rem(84);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: rem(36);
-  margin-top: rem(39);
+  margin-top: rem(36);
 
   @include below(lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

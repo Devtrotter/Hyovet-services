@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { PageIntro } from "@/components/sections/PageIntro/PageIntro";
 import { cabinetContacts, contactAside, contactIntro } from "@/content/contact";
 import { site } from "@/content/site";
-import { absoluteUrl, organizationId, pageMetadata, serializeJsonLd } from "@/lib/seo";
+import { absoluteUrl, organizationId, pageMetadata, postalAddressJsonLd, serializeJsonLd } from "@/lib/seo";
 import { CabinetContactCard } from "@/sections/contact/CabinetContactCard/CabinetContactCard";
 import { ContactForm } from "@/sections/contact/ContactForm/ContactForm";
 import { NetworkMap } from "@/sections/contact/NetworkMap/NetworkMap";
@@ -27,7 +27,7 @@ export default function ContactPage() {
       name: cabinet.title,
       telephone: cabinet.phone.label,
       email: cabinet.email.label,
-      address: cabinet.address.join(", "),
+      address: postalAddressJsonLd(cabinet.address),
       openingHours: "Mo-Fr 08:30-18:00",
     })),
   };

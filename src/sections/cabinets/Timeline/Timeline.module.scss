@@ -2,17 +2,17 @@
 
 .timeline {
   display: grid;
-  gap: rem(22);
+  gap: rem(24);
   min-height: rem(390);
-  padding: rem(24) rem(40) rem(29) rem(47);
-  border-radius: $radius-md;
+  padding: rem(24) rem(36) rem(30) rem(48);
+  border-radius: $radius-lg;
   background: #f5fafd;
 }
 
 .item {
   display: grid;
   grid-template-columns: rem(24) minmax(0, 1fr);
-  column-gap: rem(34);
+  column-gap: rem(36);
 }
 
 .dot {
@@ -43,7 +43,7 @@
 
 .description {
   max-width: rem(470);
-  margin-top: rem(2);
+  margin-top: rem(3);
   font-size: rem(18);
   line-height: rem(27);
   color: #767676;

@@ -2,8 +2,8 @@
 
 .card {
   min-height: rem(390);
-  padding: rem(36) rem(38) rem(46);
-  border-radius: $radius-md;
+  padding: rem(36) rem(36) rem(48);
+  border-radius: $radius-lg;
   background: var(--cab-surface, #f5fafd);
 }
 
@@ -11,8 +11,8 @@
   display: inline-grid;
   place-items: center;
   height: rem(86);
-  padding: rem(6) rem(8);
-  border-radius: rem(8);
+  padding: rem(6) rem(6);
+  border-radius: $radius-sm;
   background: $color-white;
 
   img {
@@ -24,8 +24,8 @@
 .location {
   display: flex;
   align-items: center;
-  gap: rem(16);
-  margin-top: rem(40);
+  gap: rem(18);
+  margin-top: rem(36);
   font-size: rem(25.6);
   font-weight: 500;
   line-height: 1.5;
@@ -47,15 +47,15 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: rem(12) rem(17);
-  margin-top: rem(38);
+  gap: rem(12) rem(18);
+  margin-top: rem(36);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
   height: rem(48);
-  padding-inline: rem(26);
+  padding-inline: rem(24);
   border-radius: $radius-pill;
   background: var(--cab-soft, #d4effc);
   color: var(--cab-accent-dark, #0078a9);

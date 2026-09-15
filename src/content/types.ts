@@ -1,3 +1,5 @@
+import type { PostalAddress } from "./contact-details";
+
 export type Accent = "green" | "salmon" | "gold" | "blue" | "emerald" | "coral" | "sun" | "cyan";
 export type Tone = "orange" | "amber" | "azure";
 
@@ -159,6 +161,8 @@ export interface CabinetPage {
     paragraphs: string[];
     logo: { src: string; width: number; height: number; alt: string };
     location: string;
+    /** Adresse postale (données structurées) */
+    address: PostalAddress;
     specialtiesLabel: string;
     specialties: string[];
   };

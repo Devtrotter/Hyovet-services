@@ -80,7 +80,7 @@
 // ---------- Variante "overlay" (expertise) ----------
 .overlay {
   height: rem(271);
-  border-radius: $radius-md;
+  border-radius: $radius-lg;
 
   &::after {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.32) 45%, rgba(0, 0, 0, 0.68) 100%);
@@ -102,7 +102,7 @@
 
   .cta {
     width: rem(229);
-    margin-top: rem(20);
+    margin-top: rem(18);
   }
 
   &.lg {
@@ -112,7 +112,7 @@
     }
 
     .cta {
-      margin-top: rem(14);
+      margin-top: rem(12);
       font-size: rem(22);
     }
   }

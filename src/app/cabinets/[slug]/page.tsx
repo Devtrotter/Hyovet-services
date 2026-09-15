@@ -8,7 +8,7 @@ import { Zones } from "@/components/sections/Zones/Zones";
 import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
 import { cabinetPages, getCabinetPage } from "@/content/cabinets";
 import { contactBanner } from "@/content/site";
-import { absoluteUrl, breadcrumbJsonLd, cabinetId, organizationId, pageMetadata, serializeJsonLd, teamJsonLd } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, cabinetId, organizationId, pageMetadata, postalAddressJsonLd, serializeJsonLd, teamJsonLd } from "@/lib/seo";
 import { CabinetHero } from "@/sections/cabinets/CabinetHero/CabinetHero";
 import { CabinetInfoCard } from "@/sections/cabinets/CabinetInfoCard/CabinetInfoCard";
 import styles from "../cabinets.module.scss";
@@ -53,7 +53,7 @@ export default async function CabinetDetailPage({ params }: PageProps<"/cabinets
         description: page.seoDescription,
         logo: absoluteUrl(page.about.logo.src),
         parentOrganization: { "@id": organizationId },
-        address: { "@type": "PostalAddress", addressLocality: page.about.location, addressCountry: "FR" },
+        address: postalAddressJsonLd(page.about.address),
         areaServed: page.zones.items.flatMap((zone) => zone.departments.map((department) => department.name)),
         knowsAbout: page.about.specialties,
       },

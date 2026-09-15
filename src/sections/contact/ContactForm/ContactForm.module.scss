@@ -5,7 +5,7 @@ $accent: #00b7ef;
 $danger: #d05833;
 
 .card {
-  padding: rem(44);
+  padding: rem(48);
   border-radius: $radius-lg;
   background: $color-white;
   box-shadow: 0 rem(4) rem(24) rgba(0, 0, 0, 0.04);
@@ -27,7 +27,7 @@ $danger: #d05833;
 
 .subtitle {
   max-width: rem(760);
-  margin-top: rem(8);
+  margin-top: rem(6);
   font-size: rem(20);
   line-height: 1.5;
   color: #767676;
@@ -44,11 +44,11 @@ $danger: #d05833;
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: rem(26) rem(24);
+  gap: rem(24) rem(24);
 
   @include below(sm) {
     grid-template-columns: 1fr;
-    gap: rem(20);
+    gap: rem(18);
   }
 }
 
@@ -59,7 +59,7 @@ $danger: #d05833;
 .field {
   display: flex;
   flex-direction: column;
-  gap: rem(10);
+  gap: rem(12);
 }
 
 .label {
@@ -70,6 +70,11 @@ $danger: #d05833;
 
 .required {
   color: $accent;
+}
+
+.optional {
+  font-weight: 400;
+  color: #767676;
 }
 
 %control {
@@ -114,7 +119,7 @@ $danger: #d05833;
   position: relative;
 
   select {
-    padding-right: rem(56);
+    padding-right: rem(60);
     cursor: pointer;
 
     // Option "Sélectionnez…" affichée comme un placeholder
@@ -142,7 +147,7 @@ $danger: #d05833;
   display: flex;
   align-items: flex-start;
   gap: rem(12);
-  padding: rem(14) rem(20);
+  padding: rem(12) rem(18);
   border-radius: $radius-sm;
   background: #fff4ef;
   font-size: rem(17);
@@ -157,6 +162,40 @@ $danger: #d05833;
   }
 }
 
+.fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+
+    * {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.disabledNotice {
+  margin-top: rem(24);
+}
+
+.noticeInfo {
+  background: #eaf6ff;
+  color: #0b4f75;
+
+  svg {
+    color: $accent;
+  }
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
 .textarea {
   @extend %control;
   display: block;
@@ -167,51 +206,12 @@ $danger: #d05833;
   resize: vertical;
 }
 
-.consent {
-  display: grid;
-  grid-template-columns: rem(26) minmax(0, 1fr);
-  column-gap: rem(16);
-  align-items: start;
-  margin-top: rem(30);
-}
-
-.checkbox {
-  width: rem(26);
-  height: rem(26);
-  margin: rem(2) 0 0;
-  border: 1.5px solid $field-border;
-  border-radius: rem(7);
-  appearance: none;
-  background: $color-white;
-  cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-
-  &:checked {
-    border-color: $accent;
-    background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
-        center / 70% no-repeat,
-      $accent;
-  }
-
-  &:user-invalid {
-    border-color: $danger;
-  }
-
-  &:focus-visible {
-    outline: 3px solid $accent;
-    outline-offset: 2px;
-  }
-}
-
-.consentText {
+.privacy {
   max-width: rem(760);
-  font-size: rem(17);
+  margin-top: rem(30);
+  font-size: rem(15);
   line-height: 1.55;
   color: #767676;
-  cursor: pointer;
 }
 
 .link {
@@ -274,8 +274,8 @@ $danger: #d05833;
   display: flex;
   align-items: flex-start;
   gap: rem(12);
-  margin-top: rem(20);
-  padding: rem(14) rem(20);
+  margin-top: rem(18);
+  padding: rem(12) rem(18);
   border-radius: $radius-sm;
   font-size: rem(17);
   line-height: 1.5;

@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cabinets",
     ...cabinetPages.map(({ slug }) => `/cabinets/${slug}`),
     "/contact",
+    "/mentions-legales",
+    "/politique-de-confidentialite",
   ];
 
   return paths.map((path) => ({ url: absoluteUrl(path) }));

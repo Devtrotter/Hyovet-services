@@ -7,8 +7,8 @@ export const hero = {
   titleLines: ["Groupe vétérinaire expert", "de la filière porcine"],
   subtitle:
     "Santé, technique et données au service de la performance de vos élevages, du sevrage à l'abattage.",
-  poster: "/images/home/hero-poster.jpg",
-  video: { webm: "/videos/hero.webm", mp4: "/videos/hero.mp4" },
+  poster: "/images/home/hero-porcelets.jpg",
+  video: { webm: "/videos/hero-porcelets.webm", mp4: "/videos/hero-porcelets.mp4" },
 };
 
 export const keyFigures: KeyFigure[] = [

@@ -4,6 +4,10 @@
 // Desktop : échelle 0.8 (rendu validé = maquette vue à 80 %) → 12.8px dès 1382px de large,
 // réduction fluide en dessous. Tablette / mobile : 13.333px (mises en page dédiées).
 html {
+  --radius-lg: #{rem(36)};
+  --radius-md: #{rem(24)};
+  --radius-sm: #{rem(12)};
+
   font-size: 13.333px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -16,6 +20,12 @@ html {
 
   @include reduced-motion {
     scroll-behavior: auto;
+  }
+
+  @include below(md) {
+    --radius-lg: #{rem(12)};
+    --radius-md: #{rem(12)};
+    --radius-sm: #{rem(6)};
   }
 }
 
@@ -96,7 +106,7 @@ button {
   top: rem(8);
   left: rem(8);
   z-index: 100;
-  padding: rem(12) rem(20);
+  padding: rem(12) rem(18);
   border-radius: $radius-pill;
   background: $color-primary;
   color: $color-white;

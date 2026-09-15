@@ -7,14 +7,14 @@
   background: $color-white;
 
   @include below(sm) {
-    padding: rem(16);
+    padding: rem(18);
   }
 }
 
 // Accueil : bloc chevauchant le grand hero
 .home {
   @include container(rem(1152));
-  margin-top: rem(-117);
+  margin-top: rem(-120);
   border-radius: $radius-lg;
   box-shadow: $shadow-card;
 
@@ -27,8 +27,8 @@
 // Pages de détail : bloc plus large et plus compact
 .compact {
   @include container(rem(1468));
-  margin-top: rem(-90);
-  border-radius: $radius-md;
+  margin-top: rem(-96);
+  border-radius: $radius-lg;
   box-shadow: 0 rem(24) rem(40) rgba(0, 0, 0, 0.3);
 
   .card {
@@ -44,7 +44,7 @@
 
   @include below(md) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: rem(16);
+    gap: rem(18);
   }
 }
 

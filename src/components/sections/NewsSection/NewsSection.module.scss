@@ -6,29 +6,29 @@
 }
 
 .home {
-  padding-top: rem(121);
-  padding-bottom: rem(89);
+  padding-top: rem(120);
+  padding-bottom: rem(84);
 }
 
 .proofs {
-  padding-top: rem(90);
+  padding-top: rem(96);
 }
 
 .actions {
   display: flex;
   justify-content: center;
-  margin-top: rem(77);
+  margin-top: rem(72);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: rem(48);
-  margin-top: rem(47);
+  margin-top: rem(48);
 
   @include below(lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: rem(32);
+    gap: rem(30);
   }
 
   @include below(sm) {
@@ -86,11 +86,11 @@
   position: absolute;
   top: rem(24);
   right: rem(24);
-  padding-inline: rem(17);
+  padding-inline: rem(18);
 }
 
 .title {
-  margin-top: rem(25);
+  margin-top: rem(24);
   font-size: rem(29.2);
   font-weight: 600;
   line-height: 1.5;
@@ -110,14 +110,14 @@
 }
 
 .excerpt {
-  margin-top: rem(23);
+  margin-top: rem(24);
   font-size: rem(21);
   line-height: rem(32);
 }
 
 .meta {
   margin-top: auto;
-  padding-top: rem(45);
+  padding-top: rem(48);
   font-size: rem(21.6);
   line-height: 1.5;
 }

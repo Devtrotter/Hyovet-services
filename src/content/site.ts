@@ -1,4 +1,5 @@
 import { cabinetsMenu } from "./cabinets";
+import { addresses as postalAddresses, emails, phone } from "./contact-details";
 import { expertiseMenu } from "./expertises";
 import type { Cabinet, NavLink } from "./types";
 
@@ -7,8 +8,9 @@ export const site = {
   url: "https://www.hyovetservices.com",
   description:
     "Groupe vétérinaire expert de la filière porcine : santé, technique et données au service de la performance de vos élevages, du sevrage à l'abattage.",
-  phone: { label: "02 96 00 00 00", href: "tel:+33296000000" },
-  email: { label: "contact@hyovet.fr", href: "mailto:contact@hyovet.fr" },
+  phone,
+  email: emails.contact,
+  recruitmentEmail: emails.recruitment,
 } as const;
 
 export const mainNav: NavLink[] = [
@@ -35,7 +37,11 @@ export const footerNav: NavLink[][] = [
   ],
 ];
 
-export const addresses = ["Hyovet — Plestan (22)", "Selas de Surfonds — Surfonds (72)"];
+/** Colonne "Adresses" du footer */
+export const footerAddresses = [
+  { name: "Hyovet & Hyovet Services", address: postalAddresses.hyovet },
+  { name: "Selas de Surfonds", address: postalAddresses.surfonds },
+];
 
 export const cabinets: Cabinet[] = [
   {
@@ -57,15 +63,17 @@ export const legalLinks: NavLink[] = [
   { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
 ];
 
-export const socials = {
-  linkedin: "https://www.linkedin.com/company/hyovet-services",
-  youtube: "https://www.youtube.com/@hyovetservices",
-};
+export const socials = [
+  { network: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/hyovet-services" },
+  { network: "youtube", label: "YouTube", href: "https://www.youtube.com/channel/UCFEtf1sZxiD2wDW6DfUynvg" },
+  { network: "instagram", label: "Instagram", href: "https://www.instagram.com/hyovetservices/" },
+  { network: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592987887140" },
+] as const;
 
 /** Bandeau "Parlons de votre élevage" (pages expertise et cabinets) */
 export const contactBanner = {
   title: "Parlons de votre élevage",
   subtitle: "Un vétérinaire du domaine vous rappelle sous 24 h ouvrées.",
-  phone: { label: "01 00 00 00 00", href: "tel:+33100000000" },
+  phone,
   form: { label: "Formulaire de contact", href: "/contact" },
 };

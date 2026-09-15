@@ -122,9 +122,10 @@ $service-tones: (
 );
 
 // ---------- Rayons ----------
-$radius-sm: rem(14);
-$radius-md: rem(24);
-$radius-lg: rem(36);
+// Valeurs responsive définies en variables CSS dans globals.scss (36 px ordinateur / 12 px mobile pour le rayon global).
+$radius-sm: var(--radius-sm); // petits éléments : liens de menu, logos, messages
+$radius-md: var(--radius-md); // éléments imbriqués ou compacts : boutons, médias dans une carte
+$radius-lg: var(--radius-lg); // rayon global : cartes, bandeaux, blocs
 $radius-pill: 999px;
 
 // ---------- Ombres ----------

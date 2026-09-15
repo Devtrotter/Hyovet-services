@@ -9,11 +9,11 @@
 }
 
 .plain {
-  padding-block: rem(80) 0;
+  padding-block: rem(84) 0;
 }
 
 .tinted {
-  padding-block: rem(54) rem(55);
+  padding-block: rem(54) rem(60);
   background: var(--cab-surface, #f5fafd);
 }
 
@@ -38,7 +38,7 @@
   margin-top: rem(27);
 
   & + & {
-    margin-top: rem(61);
+    margin-top: rem(60);
   }
 }
 
@@ -51,12 +51,12 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: rem(24.5);
+  gap: rem(24);
   margin-top: rem(27);
 
   @include below(lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: rem(16);
+    gap: rem(18);
   }
 
   @include below(sm) {
@@ -69,7 +69,7 @@
   flex-direction: column;
   align-items: center;
   padding: rem(24);
-  border-radius: $radius-md;
+  border-radius: $radius-lg;
   text-align: center;
   transition: transform 0.45s $ease-out;
 
@@ -95,7 +95,7 @@
 }
 
 .name {
-  margin-top: rem(12.5);
+  margin-top: rem(12);
   font-size: rem(20);
   font-weight: 600;
   line-height: 1.5;
@@ -115,7 +115,7 @@
   width: rem(48);
   height: rem(48);
   margin-top: rem(27);
-  border-radius: rem(4);
+  border-radius: rem(6);
   font-size: rem(22);
   transition:
     background-color 0.25s ease,

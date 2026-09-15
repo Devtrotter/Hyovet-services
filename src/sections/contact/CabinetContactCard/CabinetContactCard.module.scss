@@ -7,8 +7,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: rem(32) rem(28) rem(28);
-  border-radius: $radius-md;
+  padding: rem(30) rem(30) rem(30);
+  border-radius: $radius-lg;
   overflow: hidden;
   background: $color-white;
   box-shadow: 0 rem(4) rem(24) rgba(0, 0, 0, 0.04);
@@ -28,7 +28,7 @@
   }
 
   @include below(sm) {
-    padding: rem(22);
+    padding: rem(24);
   }
 }
 
@@ -56,9 +56,9 @@
 .infos {
   display: flex;
   flex-direction: column;
-  gap: rem(14);
-  margin-top: rem(22);
-  padding-top: rem(20);
+  gap: rem(12);
+  margin-top: rem(24);
+  padding-top: rem(18);
   border-top: 1px solid #eee;
   list-style: none;
 
@@ -73,7 +73,7 @@
 }
 
 .infoIcon {
-  margin-top: rem(4);
+  margin-top: rem(3);
   font-size: rem(19);
   color: var(--accent);
 }
@@ -90,7 +90,7 @@
 .actions {
   display: flex;
   flex-direction: column;
-  gap: rem(10);
+  gap: rem(12);
   margin-top: rem(24);
 }
 
@@ -108,9 +108,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: rem(10);
+  gap: rem(12);
   height: rem(56);
-  padding-inline: rem(20);
+  padding-inline: rem(18);
   border: 1.5px solid var(--accent-soft);
   border-radius: $radius-pill;
   font-size: rem(18);

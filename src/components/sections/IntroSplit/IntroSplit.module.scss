@@ -3,14 +3,14 @@
 .section {
   display: grid;
   grid-template-columns: minmax(0, 880fr) minmax(0, 675fr);
-  gap: rem(53);
+  gap: rem(48);
   width: min(#{rem(1608)}, calc(100% - #{$page-gutter} * 2));
   margin-inline: auto;
-  padding-block: rem(80) rem(84);
+  padding-block: rem(84) rem(84);
 
   @include below(lg) {
     grid-template-columns: 1fr;
-    gap: rem(32);
+    gap: rem(30);
   }
 }
 
@@ -18,7 +18,7 @@
   padding-top: rem(120);
 
   @include below(lg) {
-    padding-top: rem(64);
+    padding-top: rem(60);
   }
 }
 
@@ -34,7 +34,7 @@
 }
 
 .body {
-  margin-top: rem(8.5);
+  margin-top: rem(9);
   font-size: rem(24);
   line-height: rem(36);
 

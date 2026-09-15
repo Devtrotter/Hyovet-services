@@ -1,9 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaLinkedinIn, FaPlay } from "react-icons/fa6";
-import { addresses, cabinets, footerNav, legalLinks, site, socials } from "@/content/site";
+import type { IconType } from "react-icons";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
+import { cabinets, footerAddresses, footerNav, legalLinks, site, socials } from "@/content/site";
 import styles from "./Footer.module.scss";
-import { NewsletterForm } from "./NewsletterForm";
+
+const socialIcons: Record<(typeof socials)[number]["network"], IconType> = {
+  linkedin: FaLinkedinIn,
+  youtube: FaYoutube,
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+};
 
 export function Footer() {
   const year = 2026;
@@ -67,25 +74,35 @@ export function Footer() {
                   {site.email.label}
                 </a>
               </li>
+              <li>
+                <a href={site.recruitmentEmail.href} className={styles.link}>
+                  <span className={styles.glyph} aria-hidden="true">
+                    ✉
+                  </span>{" "}
+                  {site.recruitmentEmail.label}
+                </a>
+              </li>
             </ul>
           </div>
 
           <div className={styles.column}>
             <h2 className={styles.heading}>Adresses</h2>
-            <address className={styles.addresses}>
-              {addresses.map((address) => (
-                <span key={address}>{address}</span>
+            <div className={styles.addresses}>
+              {footerAddresses.map(({ name, address }) => (
+                <address key={name}>
+                  <strong>{name}</strong>
+                  <br />
+                  {address.street}
+                  <br />
+                  {address.postalCode} {address.city}
+                </address>
               ))}
-            </address>
+            </div>
           </div>
 
-          <div className={`${styles.column} ${styles.newsletter}`}>
-            <h2 className={styles.heading}>Newsletter sanitaire</h2>
-            <NewsletterForm />
-            <p className={styles.legal}>
-              En vous inscrivant vous acceptez notre politique de confidentialité (RGPD).
-            </p>
-          </div>
+          {/* Newsletter masquée tant qu'elle n'est pas branchée à un outil d'envoi (RGPD : aucune inscription
+              ne doit être annoncée sans être réellement enregistrée). Réactiver avec <NewsletterForm /> et
+              un texte d'information (finalité, désinscription, lien vers la politique de confidentialité). */}
         </div>
       </div>
 
@@ -100,16 +117,22 @@ export function Footer() {
           ))}
         </p>
         <ul className={styles.socials}>
-          <li>
-            <a href={socials.linkedin} className={styles.social} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FaLinkedinIn aria-hidden />
-            </a>
-          </li>
-          <li>
-            <a href={socials.youtube} className={styles.social} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <FaPlay aria-hidden />
-            </a>
-          </li>
+          {socials.map(({ network, label, href }) => {
+            const Icon = socialIcons[network];
+            return (
+              <li key={network}>
+                <a
+                  href={href}
+                  className={styles.social}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${site.name} sur ${label}`}
+                >
+                  <Icon aria-hidden />
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </footer>

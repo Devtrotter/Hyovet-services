@@ -18,7 +18,7 @@ export function MediaHero({ id, titleLines, subtitle, poster, video, variant = "
   return (
     <section className={cx(styles.hero, styles[variant])} aria-labelledby={id}>
       <div className={styles.media}>
-        {/* Image déjà floutée côté asset : une résolution modérée suffit, poids minimal. */}
+        {/* Première image de la vidéo : affichée immédiatement (LCP), la vidéo prend le relais en fondu. */}
         <Image
           src={poster}
           alt=""

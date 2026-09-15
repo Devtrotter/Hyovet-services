@@ -21,7 +21,7 @@ export function Header() {
             loading="eager"
           />
           <span className={styles.brandName}>
-            <strong>Hyovet</strong> Service
+            <strong>Hyovet</strong> Services
           </span>
         </Link>
 

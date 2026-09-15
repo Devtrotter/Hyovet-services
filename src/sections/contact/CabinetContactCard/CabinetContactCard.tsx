@@ -27,9 +27,9 @@ export function CabinetContactCard({ theme, logo, title, address, hours, note, p
         <li>
           <FiMapPin className={styles.infoIcon} aria-hidden />
           <address className={styles.address}>
-            {address[0]}
+            {address.street}
             <br />
-            {address[1]}
+            {address.postalCode} {address.city}, {address.department}
           </address>
         </li>
         <li>

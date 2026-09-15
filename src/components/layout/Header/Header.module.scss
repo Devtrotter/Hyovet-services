@@ -12,8 +12,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: rem(72);
-  padding: 0 rem(6) 0 rem(18);
+  // Dimensions en px fixes (et non en rem) : le header garde 72 px quelle que soit la largeur d'écran.
+  height: 72px;
+  padding-inline: 12px;
   border-radius: $radius-md;
   background: $color-white;
   box-shadow: $shadow-header;
@@ -22,7 +23,7 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: rem(22);
+  gap: rem(24);
   border-radius: $radius-sm;
 }
 
@@ -119,8 +120,8 @@
   left: 50%;
   z-index: 10;
   width: rem(420);
-  padding: rem(10);
-  border-radius: $radius-md;
+  padding: rem(12);
+  border-radius: $radius-lg;
   background: $color-white;
   box-shadow: 0 rem(18) rem(40) rgba(0, 0, 0, 0.14);
   opacity: 0;
@@ -134,14 +135,14 @@
 
 .dropdownList {
   display: grid;
-  gap: rem(2);
+  gap: rem(3);
 }
 
 .dropdownLink {
   display: flex;
   flex-direction: column;
-  gap: rem(2);
-  padding: rem(12) rem(16);
+  gap: rem(3);
+  padding: rem(12) rem(18);
   border-radius: $radius-sm;
   transition: background-color 0.2s ease;
 
@@ -176,7 +177,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: rem(6);
-  padding: rem(14) rem(16);
+  padding: rem(12) rem(18);
   border-radius: $radius-sm;
   background: #f5fafd;
   font-size: rem(15);

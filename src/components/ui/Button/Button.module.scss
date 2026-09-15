@@ -27,8 +27,8 @@
 
 // Header : "Nous contacter"
 .sky {
-  height: rem(60);
-  padding-inline: rem(29);
+  height: 48px; // centré dans le header de 72 px : 12 px de marge en haut, en bas et à droite
+  padding-inline: rem(30);
   border-radius: $radius-md;
   background: $color-sky;
   color: $color-white;
@@ -43,7 +43,7 @@
 // Cartes photo (accueil, expertise)
 .light {
   height: rem(72);
-  padding-inline: rem(20);
+  padding-inline: rem(18);
   border-radius: $radius-pill;
   background: $color-white;
   color: $color-black;
@@ -51,7 +51,7 @@
 
   &.md {
     height: rem(60);
-    padding-right: rem(40);
+    padding-right: rem(36);
     font-size: rem(21.4);
 
     .icon {
@@ -69,7 +69,7 @@
 .outline {
   gap: rem(15);
   height: rem(73);
-  padding-inline: rem(44);
+  padding-inline: rem(48);
   border: 2px solid $color-black;
   border-radius: $radius-pill;
   color: $color-black;
@@ -85,7 +85,7 @@
 // Pages expertise : "Voir les publications"
 .ocean {
   height: rem(73);
-  padding-inline: rem(62);
+  padding-inline: rem(60);
   border-radius: $radius-pill;
   background: $color-ocean;
   color: $color-white;
@@ -100,7 +100,7 @@
 // Bandeau contact : téléphone (fond blanc) et formulaire (contour blanc)
 .white,
 .outlineLight {
-  gap: rem(13);
+  gap: rem(12);
   height: rem(60);
   border-radius: $radius-pill;
   font-size: rem(20.4);
@@ -108,7 +108,7 @@
 }
 
 .white {
-  padding-inline: rem(23);
+  padding-inline: rem(24);
   background: $color-white;
   color: $color-black;
 
@@ -123,7 +123,7 @@
 }
 
 .outlineLight {
-  padding-inline: rem(32);
+  padding-inline: rem(30);
   border: 1.5px solid $color-white;
   color: $color-white;
 
@@ -138,7 +138,7 @@
 .surfonds,
 .brand {
   height: rem(72);
-  padding-inline: rem(37);
+  padding-inline: rem(36);
   border-radius: $radius-pill;
   color: $color-white;
   font-size: rem(23);
@@ -164,7 +164,7 @@
 
 .primary {
   height: rem(56);
-  padding-inline: rem(28);
+  padding-inline: rem(30);
   border-radius: $radius-pill;
   background: $color-primary;
   color: $color-white;

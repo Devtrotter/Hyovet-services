@@ -1,6 +1,6 @@
 @use "abstracts" as *;
 
-$footer-gutter: rem(69);
+$footer-gutter: rem(72);
 
 .footer {
   font-family: $font-footer;
@@ -9,17 +9,17 @@ $footer-gutter: rem(69);
 }
 
 .inner {
-  padding: rem(86) $footer-gutter rem(125);
+  padding: rem(84) $footer-gutter rem(120);
 
   @include below(sm) {
-    padding: rem(56) rem(24) rem(120);
+    padding: rem(60) rem(24) rem(120);
   }
 }
 
 .logo {
   display: flex;
   width: fit-content;
-  margin-left: rem(5);
+  margin-left: rem(6);
 
   img {
     width: rem(125);
@@ -31,16 +31,16 @@ $footer-gutter: rem(69);
 .cabinets {
   display: flex;
   flex-wrap: wrap;
-  gap: rem(19);
-  margin-top: rem(28);
+  gap: rem(18);
+  margin-top: rem(30);
 }
 
 .cabinet {
   display: flex;
   align-items: center;
-  gap: rem(19);
+  gap: rem(18);
   height: rem(71);
-  padding-inline: rem(22);
+  padding-inline: rem(24);
   border-radius: $radius-sm;
   background: $color-white;
   transition:
@@ -75,11 +75,11 @@ $footer-gutter: rem(69);
   display: grid;
   // Proportions de la maquette (448 / 355 / 356 / 434), fluides.
   grid-template-columns: minmax(0, 448fr) minmax(0, 355fr) minmax(0, 356fr) minmax(0, 431fr);
-  margin-top: rem(61);
+  margin-top: rem(60);
 
   @include below(lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: rem(40);
+    gap: rem(36);
   }
 
   @include below(sm) {
@@ -108,11 +108,11 @@ $footer-gutter: rem(69);
 }
 
 .column {
-  padding-top: rem(4);
+  padding-top: rem(3);
 }
 
 .heading {
-  margin-bottom: rem(14);
+  margin-bottom: rem(12);
   font-size: rem(20);
   font-weight: 600;
   line-height: rem(24);
@@ -132,7 +132,11 @@ $footer-gutter: rem(69);
 .addresses {
   display: flex;
   flex-direction: column;
-  font-style: normal;
+  gap: rem(12);
+
+  address {
+    font-style: normal;
+  }
   font-size: rem(17);
   line-height: rem(29);
 }
@@ -145,7 +149,7 @@ $footer-gutter: rem(69);
   position: relative;
   display: flex;
   height: rem(55);
-  margin-top: rem(16);
+  margin-top: rem(18);
   border: 1.5px solid $color-primary;
   border-radius: $radius-pill;
   background: $color-white;
@@ -159,7 +163,7 @@ $footer-gutter: rem(69);
 .input {
   flex: 1;
   min-width: 0;
-  padding-inline: rem(22);
+  padding-inline: rem(24);
   border: 0;
   background: transparent;
   font-size: rem(16.8);
@@ -204,7 +208,7 @@ $footer-gutter: rem(69);
   justify-content: space-between;
   gap: rem(24);
   min-height: rem(87);
-  padding: rem(16) $footer-gutter;
+  padding: rem(18) $footer-gutter;
   background: $color-primary;
   color: $color-white;
 

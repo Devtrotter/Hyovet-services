@@ -76,7 +76,7 @@
 .home {
   height: rem(972);
   // zone chevauchée par le bloc "chiffres clés"
-  padding-bottom: rem(117);
+  padding-bottom: rem(120);
   border-radius: $radius-lg;
 
   .content {
@@ -108,21 +108,21 @@
   @include below(md) {
     height: auto;
     min-height: min(rem(760), 88svh);
-    padding-top: rem(64);
+    padding-top: rem(60);
   }
 }
 
 // ---------- Pages internes ----------
 .page {
   height: rem(382);
-  border-radius: $radius-md;
+  border-radius: $radius-lg;
 
   .overlay {
     background: rgba(0, 0, 0, 0.4);
   }
 
   .content {
-    gap: rem(26);
+    gap: rem(24);
     max-width: rem(1000);
   }
 
@@ -146,6 +146,6 @@
   @include below(md) {
     height: auto;
     min-height: rem(382);
-    padding-block: rem(56);
+    padding-block: rem(60);
   }
 }

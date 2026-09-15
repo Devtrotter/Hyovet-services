@@ -3,21 +3,21 @@
 .hero {
   height: rem(644);
   margin: $page-gutter $page-gutter 0;
-  padding: rem(46) rem(48) 0;
-  border-radius: $radius-md;
+  padding: rem(48) rem(48) 0;
+  border-radius: $radius-lg;
   background: linear-gradient(180deg, #a0a0a0 0%, #4f4f4f 85%, #4f4f4f 100%);
   color: $color-white;
 
   @include below(md) {
     height: auto;
-    padding: rem(32) rem(28) rem(140);
+    padding: rem(30) rem(30) rem(144);
   }
 }
 
 .content {
   max-width: rem(830);
-  margin-top: rem(47);
-  padding-left: rem(8);
+  margin-top: rem(48);
+  padding-left: rem(6);
 
   @include below(md) {
     padding-left: 0;
@@ -37,7 +37,7 @@
 
 .subtitle {
   max-width: rem(655);
-  margin-top: rem(12.7);
+  margin-top: rem(12);
   font-size: rem(24);
   line-height: 1.5;
 

@@ -13,7 +13,7 @@ type NetworkInformation = { saveData?: boolean; effectiveType?: string };
 /**
  * Vidéo de fond chargée APRÈS le rendu : l'image fixe (next/image, prioritaire) sert de LCP,
  * la vidéo démarre uniquement quand la page est chargée et le navigateur inactif,
- * puis apparaît en fondu lorsqu'elle peut être lue sans coupure.
+ * puis apparaît en fondu dès que la lecture démarre.
  */
 export function HeroVideo({ webm, mp4 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,28 +53,26 @@ export function HeroVideo({ webm, mp4 }: HeroVideoProps) {
     const video = videoRef.current;
     if (!shouldLoad || !video) return;
 
-    const play = () => {
-      video
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => undefined);
-    };
-
-    video.addEventListener("canplaythrough", play, { once: true });
+    // Fondu dès que la lecture démarre réellement. `play()` attend lui-même d'avoir assez de données :
+    // on ne dépend plus de `canplaythrough`, qui peut ne jamais se déclencher (Safari, préchargement réduit).
+    const onPlaying = () => setIsPlaying(true);
+    video.addEventListener("playing", onPlaying);
     video.load();
 
+    // Lecture à l'écran, pause hors écran. Le premier appel (immédiat) lance la vidéo si le hero est visible.
+    // Si le navigateur refuse la lecture automatique (mode économie d'énergie…), l'image reste affichée.
     const observer = new IntersectionObserver(([entry]) => {
-      if (!video.readyState) return;
       if (entry.isIntersecting) video.play().catch(() => undefined);
       else video.pause();
     });
     observer.observe(video);
 
     return () => {
-      video.removeEventListener("canplaythrough", play);
+      video.removeEventListener("playing", onPlaying);
       observer.disconnect();
     };
-  }, [shouldLoad]);
+    // Les sources en dépendance : un changement de vidéo recharge l'élément (utile aussi en développement).
+  }, [shouldLoad, webm, mp4]);
 
   return (
     <video

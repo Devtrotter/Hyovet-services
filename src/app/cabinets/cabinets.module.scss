@@ -2,11 +2,11 @@
 
 .contact {
   @include container(rem(1598));
-  padding-block: rem(60) rem(52);
+  padding-block: rem(60) rem(48);
 }
 
 .contactCabinet {
-  padding-bottom: rem(64);
+  padding-bottom: rem(60);
 }
 
 // Thèmes de marque des pages cabinet (variables CSS consommées par les composants)

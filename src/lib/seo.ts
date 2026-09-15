@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { cabinetPages } from "@/content/cabinets";
+import { addresses, emails, type PostalAddress } from "@/content/contact-details";
 import { site, socials } from "@/content/site";
 import type { NavLink, TeamContent } from "@/content/types";
 
@@ -7,7 +8,7 @@ import type { NavLink, TeamContent } from "@/content/types";
 
 export const absoluteUrl = (path: string) => new URL(path, site.url).toString();
 
-export const defaultOgImage = { url: "/images/home/hero-poster.jpg", width: 1920, height: 1080 };
+export const defaultOgImage = { url: "/images/home/hero-porcelets.jpg", width: 1920, height: 1080 };
 
 // Les métadonnées Next sont fusionnées superficiellement : une page qui définit `openGraph`
 // remplace tout l'objet du layout. Chaque page repart donc de cette base (image, locale, nom du site).
@@ -41,6 +42,15 @@ export function pageMetadata({ title, description, path, image }: PageMetadataOp
   };
 }
 
+export const postalAddressJsonLd = ({ street, postalCode, city, department }: PostalAddress) => ({
+  "@type": "PostalAddress",
+  streetAddress: street,
+  postalCode,
+  addressLocality: city,
+  addressRegion: department,
+  addressCountry: "FR",
+});
+
 /** Sérialise un objet JSON-LD pour une balise <script> (échappe `<` contre l'injection HTML). */
 export const serializeJsonLd = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
 
@@ -62,17 +72,15 @@ export const organizationJsonLd = {
       image: absoluteUrl(defaultOgImage.url),
       description: site.description,
       telephone: site.phone.label,
-      email: site.email.label,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "5 Parc Activités du Carrefour",
-        postalCode: "22640",
-        addressLocality: "Plestan",
-        addressCountry: "FR",
-      },
+      email: emails.contact.label,
+      address: postalAddressJsonLd(addresses.hyovet),
+      contactPoint: [
+        { "@type": "ContactPoint", contactType: "customer service", email: emails.contact.label, availableLanguage: "fr" },
+        { "@type": "ContactPoint", contactType: "recruitment", email: emails.recruitment.label, availableLanguage: "fr" },
+      ],
       areaServed: ["Bretagne", "Pays de la Loire", "Normandie", "Centre-Val de Loire", "Nouvelle-Aquitaine"],
       knowsAbout: ["Médecine vétérinaire porcine", ...cabinetPages.flatMap((page) => page.about.specialties)],
-      sameAs: Object.values(socials),
+      sameAs: socials.map((social) => social.href),
       subOrganization: cabinetPages.map((page) => ({ "@id": cabinetId(page.slug) })),
     },
     {

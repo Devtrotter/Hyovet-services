@@ -1,0 +1,7 @@
+@use "abstracts" as *;
+
+// Espace avant le footer tant que la section "Publications & actualités" est masquée
+// (même valeur que l'espace au-dessus de la section zones). À retirer quand elle revient.
+.zones {
+  padding-bottom: rem(120);
+}

@@ -5,7 +5,7 @@
 }
 
 .stacked {
-  padding-top: rem(119);
+  padding-top: rem(120);
 }
 
 // Cabinets : titre + accordéon à gauche, carte pleine hauteur à droite
@@ -17,7 +17,7 @@
   }
 
   .sideColumn > header {
-    margin-top: rem(-4);
+    margin-top: rem(-3);
   }
 
   .sideColumn .accordion {
@@ -37,7 +37,7 @@
 
   @include below(lg) {
     grid-template-columns: 1fr;
-    gap: rem(32);
+    gap: rem(30);
   }
 }
 
@@ -48,7 +48,7 @@
   gap: rem(48);
 
   @include below(sm) {
-    gap: rem(20);
+    gap: rem(18);
   }
 }
 
@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: rem(16);
+  gap: rem(18);
   width: 100%;
   padding: rem(30);
   border-radius: $radius-lg;
@@ -79,14 +79,14 @@
   transition: padding 0.45s $ease-out;
 
   .item[data-open="true"] & {
-    padding: rem(36) rem(36) rem(35);
+    padding: rem(36) rem(36) rem(36);
   }
 
   @include below(sm) {
-    padding: rem(22);
+    padding: rem(24);
 
     .item[data-open="true"] & {
-      padding: rem(22) rem(22) rem(14);
+      padding: rem(24) rem(24) rem(12);
     }
   }
 }
@@ -116,7 +116,7 @@
 .panelInner {
   display: flex;
   flex-direction: column;
-  gap: rem(10);
+  gap: rem(12);
   min-height: 0;
   overflow: hidden;
   padding-inline: rem(36);
@@ -126,7 +126,7 @@
     padding 0.45s $ease-out;
 
   .item[data-open="true"] & {
-    padding-bottom: rem(29);
+    padding-bottom: rem(30);
     opacity: 1;
     transition:
       opacity 0.5s ease 0.1s,
@@ -134,10 +134,10 @@
   }
 
   @include below(sm) {
-    padding-inline: rem(22);
+    padding-inline: rem(24);
 
     .item[data-open="true"] & {
-      padding-bottom: rem(22);
+      padding-bottom: rem(24);
     }
   }
 }
@@ -170,6 +170,70 @@
   @include below(lg) {
     min-height: rem(480);
   }
+}
+
+// Aperçu avant consentement aux cartes Google
+.mapConsent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(18);
+  padding: rem(24);
+  text-align: center;
+  color: $color-text;
+}
+
+.mapConsentIcon {
+  font-size: rem(48);
+  color: $color-white;
+}
+
+.mapConsentText {
+  max-width: rem(420);
+  font-size: rem(17);
+  line-height: 1.5;
+}
+
+.mapConsentActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: rem(12) rem(24);
+}
+
+.mapConsentButton {
+  height: rem(48);
+  padding-inline: rem(24);
+  border-radius: $radius-pill;
+  background: $color-white;
+  font-size: rem(17);
+  font-weight: 600;
+  color: $color-primary;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-primary;
+    color: $color-white;
+  }
+
+  @include focus-ring($color-white);
+}
+
+.mapConsentLink {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(6);
+  font-size: rem(17);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: rem(3);
 }
 
 .mapFrame {

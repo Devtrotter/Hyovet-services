@@ -2,7 +2,7 @@
 @use "abstracts" as *;
 
 .section {
-  padding-block: rem(59) rem(60);
+  padding-block: rem(60) rem(60);
   background: var(--cab-surface, #f5fafd);
 }
 
@@ -44,7 +44,7 @@
 
   @include below(lg) {
     grid-template-columns: 1fr;
-    gap: rem(16);
+    gap: rem(18);
   }
 }
 
@@ -54,7 +54,7 @@
   align-items: center;
   min-height: rem(347);
   padding: rem(60) rem(24);
-  border-radius: $radius-md;
+  border-radius: $radius-lg;
   text-align: center;
   transition: transform 0.45s $ease-out;
 
@@ -68,7 +68,7 @@
 
   @include below(lg) {
     min-height: 0;
-    padding-block: rem(40);
+    padding-block: rem(36);
   }
 }
 
@@ -94,7 +94,7 @@
 }
 
 .cardTitle {
-  margin-top: rem(37.5);
+  margin-top: rem(36);
   font-size: rem(26.4);
   font-weight: 600;
   line-height: rem(39);
@@ -102,7 +102,7 @@
 
 .cardText {
   max-width: rem(458);
-  margin-top: rem(11);
+  margin-top: rem(12);
   font-size: rem(18);
   line-height: rem(27);
 }

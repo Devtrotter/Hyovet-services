@@ -1,6 +1,7 @@
+import { addresses, emails, formatAddress, phone, type PostalAddress } from "./contact-details";
 import type { CabinetTheme, MapView } from "./types";
 
-// Page "Nous contacter" — contenus repris de la maquette (adresses et numéros provisoires).
+// Page "Nous contacter" — contenus repris de la maquette.
 
 export const contactIntro = {
   title: "Nous contacter",
@@ -8,6 +9,14 @@ export const contactIntro = {
 };
 
 export const contactForm = {
+  /** Formulaire désactivé tant que l'envoi des messages n'est pas branché : passer à `true` pour l'ouvrir. */
+  enabled: false,
+  disabledNotice: {
+    before: "Le formulaire sera bientôt disponible. En attendant, appelez-nous au ",
+    phone,
+    middle: " ou écrivez à ",
+    email: emails.contact,
+  },
   title: "Écrivez-nous",
   subtitle: "Réponse sous 24 h ouvrées. Les champs marqués * sont obligatoires.",
   placeholders: {
@@ -19,6 +28,11 @@ export const contactForm = {
   },
   urgentReason: "Urgence en élevage",
   urgentNotice: "Pour une urgence, n'attendez pas notre réponse écrite : appelez directement votre cabinet.",
+  recruitmentReason: "Recrutement / stage",
+  recruitmentNotice: {
+    before: "Pour une candidature spontanée ou une demande de stage, vous pouvez aussi écrire directement à ",
+    email: emails.recruitment,
+  },
   profiles: ["Éleveur", "Vétérinaire", "Laboratoire / partenaire", "Étudiant·e", "Autre"],
   reasons: [
     "Urgence en élevage",
@@ -28,10 +42,11 @@ export const contactForm = {
     "Partenariat / essai terrain",
     "Autre",
   ],
-  consent: {
-    before: "J'accepte que mes données soient utilisées pour traiter ma demande, conformément à la ",
-    link: { label: "politique de confidentialité", href: "/politique-de-confidentialite" },
-    after: " (RGPD). *",
+  /** Mentions d'information RGPD affichées sous le formulaire (base légale : répondre à la demande, pas le consentement). */
+  privacyNotice: {
+    text: "Les informations saisies sont utilisées par Hyovet Services uniquement pour traiter votre demande et vous répondre. Elles sont conservées 3 ans à compter de notre dernier échange. Vous pouvez y accéder, les rectifier, les effacer ou vous opposer à leur traitement en écrivant à ",
+    email: emails.contact,
+    link: { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
   },
   submitLabel: "Contacter Hyovet",
   success: "Merci, votre message a bien été envoyé. Un membre de l'équipe vous répond sous 24 h ouvrées.",
@@ -43,8 +58,7 @@ export interface CabinetContact {
   theme: CabinetTheme;
   logo: { src: string; width: number; height: number; alt: string };
   title: string;
-  /** Rue puis code postal / ville */
-  address: [string, string];
+  address: PostalAddress;
   hours: string;
   /** Précision affichée sous les horaires (astreinte, zone d'intervention…) */
   note: string;
@@ -58,12 +72,12 @@ export const cabinetContacts: CabinetContact[] = [
     theme: "hyovet",
     logo: { src: "/images/logos/hyovet.png", width: 338, height: 118, alt: "Hyovet" },
     title: "Hyovet — Plestan",
-    address: ["ZA de la Hunaudaye", "22640 Plestan, Côtes-d'Armor"],
+    address: addresses.hyovet,
     hours: "Lun–Ven · 8h30–18h",
     note: "Astreinte 7j/7 pour les élevages suivis",
-    map: { lat: 48.42, lng: -2.45, zoom: 9, query: "Plestan, Côtes-d'Armor" },
-    phone: { label: "02 96 00 00 00", href: "tel:+33296000000" },
-    email: { label: "contact@hyovet.fr", href: "mailto:contact@hyovet.fr" },
+    map: { lat: 48.42, lng: -2.45, zoom: 9, query: formatAddress(addresses.hyovet) },
+    phone,
+    email: emails.contact,
   },
   {
     theme: "surfonds",
@@ -74,12 +88,12 @@ export const cabinetContacts: CabinetContact[] = [
       alt: "Selas de Surfonds",
     },
     title: "Selas de Surfonds — près du Mans",
-    address: ["Le Bourg", "72370 Surfonds, Sarthe"],
+    address: addresses.surfonds,
     hours: "Lun–Ven · 8h30–18h",
     note: "Interventions multi-régions",
-    map: { lat: 47.98, lng: 0.47, zoom: 9, query: "Surfonds, Sarthe" },
-    phone: { label: "02 43 00 00 00", href: "tel:+33243000000" },
-    email: { label: "contact@surfonds.fr", href: "mailto:contact@surfonds.fr" },
+    map: { lat: 48.04, lng: 0.16, zoom: 9, query: formatAddress(addresses.surfonds) },
+    phone,
+    email: emails.contact,
   },
 ];
 

@@ -1,3 +1,4 @@
+import { addresses, formatAddress } from "./contact-details";
 import { zones as homeZones } from "./home";
 import type { CabinetPage, NavLink, TeamMember, ValuesContent } from "./types";
 
@@ -197,6 +198,7 @@ export const cabinetPages: CabinetPage[] = [
       ],
       logo: { src: "/images/logos/hyovet.png", width: 338, height: 118, alt: "Hyovet" },
       location: "Plestan, Côtes-d'Armor (22)",
+      address: addresses.hyovet,
       specialtiesLabel: "Nos spécialités :",
       specialties: ["Sécurisation du statut sanitaire", "Démédication"],
     },
@@ -208,7 +210,7 @@ export const cabinetPages: CabinetPage[] = [
         {
           ...homeZones.items[0],
           badge: undefined,
-          map: { lat: 48.25, lng: -3.2, zoom: 8, query: "Plestan, Côtes-d'Armor" },
+          map: { lat: 48.25, lng: -3.2, zoom: 8, query: formatAddress(addresses.hyovet) },
         },
       ],
     },
@@ -238,7 +240,8 @@ export const cabinetPages: CabinetPage[] = [
         "Cette flexibilité géographique nous permet d'accompagner des structures porcines aux profils très variés : suivi sanitaire de pointe, aide à la décision réactive et accompagnement technique sur-mesure.",
       ],
       logo: { src: "/images/logos/selas-de-surfonds.png", width: 572, height: 348, alt: "Selas de Surfonds" },
-      location: "Surfonds, Sarthe (72)",
+      location: "La Chapelle-Saint-Aubin, Sarthe (72)",
+      address: addresses.surfonds,
       specialtiesLabel: "Nos spécialités :",
       specialties: ["Suivi sanitaire de pointe", "Aide à la décision"],
     },
@@ -279,7 +282,7 @@ export const cabinetPages: CabinetPage[] = [
             { name: "Seine-Maritime (76)", cities: "Rouen 76000, Dieppe 76200, Le Havre 76600" },
             { name: "Cher (18) · Gironde (33)", cities: "Bourges 18000, Vierzon 18100 · Bordeaux 33000, Libourne 33500" },
           ],
-          map: { lat: 47.3, lng: 0.4, zoom: 6, query: "Surfonds, Sarthe" },
+          map: { lat: 47.3, lng: 0.4, zoom: 6, query: formatAddress(addresses.surfonds) },
         },
       ],
     },

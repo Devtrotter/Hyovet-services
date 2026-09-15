@@ -1,11 +1,11 @@
 @use "abstracts" as *;
 
 .intro {
-  padding: rem(61) $page-gutter rem(86);
+  padding: rem(60) $page-gutter rem(84);
   text-align: center;
 
   @include below(md) {
-    padding-block: rem(40) rem(48);
+    padding-block: rem(36) rem(48);
   }
 }
 

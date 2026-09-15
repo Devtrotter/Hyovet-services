@@ -5,7 +5,7 @@
   background: #f5fafd;
 
   @include below(md) {
-    padding-block: rem(40) rem(56);
+    padding-block: rem(36) rem(60);
   }
 }
 
@@ -29,7 +29,7 @@
 }
 
 .asideHeading {
-  padding-inline: rem(4);
+  padding-inline: rem(3);
 }
 
 .asideTitle {

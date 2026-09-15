@@ -1,6 +1,7 @@
 import { cabinetPages } from "@/content/cabinets";
 import { expertiseDetails, expertiseHref } from "@/content/expertises";
-import { site } from "@/content/site";
+import { addresses, emails, formatAddress } from "@/content/contact-details";
+import { site, socials } from "@/content/site";
 import { absoluteUrl } from "@/lib/seo";
 
 // Résumé du site au format llms.txt (https://llmstxt.org) : aide les assistants IA à comprendre
@@ -30,7 +31,14 @@ export function GET() {
     "## Contact",
     "",
     `- [Nous contacter](${absoluteUrl("/contact")}): un numéro par cabinet et un formulaire de contact.`,
-    `- Email : ${site.email.label}`,
+    `- Contact général : ${emails.contact.label}`,
+    `- Recrutement : ${emails.recruitment.label}`,
+    `- Hyovet et Hyovet Services : ${formatAddress(addresses.hyovet)}`,
+    `- Selas de Surfonds : ${formatAddress(addresses.surfonds)}`,
+    "",
+    "## Réseaux sociaux",
+    "",
+    ...socials.map((social) => `- [${social.label}](${social.href})`),
     "",
   ];
 

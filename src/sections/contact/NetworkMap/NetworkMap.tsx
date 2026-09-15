@@ -2,6 +2,7 @@ import { FiMapPin } from "react-icons/fi";
 import { GoogleMap } from "@/components/sections/Zones/GoogleMap";
 import { SectionHeading } from "@/components/ui/SectionHeading/SectionHeading";
 import { cabinetContacts, network } from "@/content/contact";
+import { formatAddress } from "@/content/contact-details";
 import styles from "./NetworkMap.module.scss";
 
 /** "Deux cabinets, un même réseau" : une carte par cabinet, chacune pointée sur son adresse. */
@@ -18,7 +19,7 @@ export function NetworkMap() {
               <span>
                 <strong>{cabinet.title}</strong>
                 <br />
-                {cabinet.address.join(", ")}
+                {formatAddress(cabinet.address)}
               </span>
             </figcaption>
           </figure>
