@@ -1,0 +1,132 @@
+@use "abstracts" as *;
+
+.hero {
+  // Hauteur du header (72 px fixes) + sa gouttière : le bandeau passe dessous.
+  $header-offset: calc(72px + #{$page-gutter});
+
+  margin-top: calc(#{$header-offset} * -1);
+  padding-block: calc(#{$header-offset} + #{rem(96)}) rem(96);
+  background: #f5fafd;
+
+  @include below(md) {
+    padding-block: calc(#{$header-offset} + #{rem(40)}) rem(56);
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 754fr) minmax(0, 461fr);
+  align-items: center;
+  gap: rem(60);
+  @include container(rem(1608));
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(40);
+  }
+}
+
+.title {
+  font-size: rem(69);
+  font-weight: 700;
+  line-height: 1.03;
+  color: #333;
+
+  @include below(lg) {
+    font-size: rem(56);
+  }
+
+  @include below(sm) {
+    font-size: rem(40);
+  }
+}
+
+.highlight {
+  color: #00b7ef;
+}
+
+.subtitle {
+  max-width: rem(754);
+  margin-top: rem(24);
+  font-size: rem(24);
+  line-height: 1.5;
+  color: #767676;
+
+  @include below(sm) {
+    font-size: rem(19);
+  }
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+  margin-top: rem(48);
+}
+
+.field {
+  position: relative;
+  flex: 1 1 rem(360);
+  min-width: 0;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: rem(24);
+  font-size: rem(24);
+  color: #767676;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  height: rem(72);
+  padding-inline: rem(60) rem(24);
+  border: 1px solid #d9d9d9;
+  border-radius: $radius-pill;
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(25) rgba(0, 0, 0, 0.05);
+  font-family: inherit;
+  font-size: rem(19);
+  color: $color-black;
+
+  &::placeholder {
+    color: #b5b5b5;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #00b7ef;
+    box-shadow: 0 0 0 rem(4) rgba(0, 183, 239, 0.15);
+  }
+}
+
+.submit {
+  flex: none;
+  height: rem(72);
+  padding-inline: rem(36);
+  border-radius: $radius-pill;
+  background: #00b7ef;
+  color: $color-white;
+  font-family: $font-heading;
+  font-size: rem(23);
+  font-weight: 600;
+  transition:
+    transform 0.35s $ease-out,
+    filter 0.25s ease,
+    box-shadow 0.35s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-2));
+    filter: brightness(0.94);
+    box-shadow: 0 rem(10) rem(24) rgba(0, 183, 239, 0.3);
+  }
+
+  @include focus-ring(#00b7ef);
+
+  @include below(sm) {
+    flex: 1;
+  }
+}

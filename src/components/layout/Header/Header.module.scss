@@ -1,10 +1,19 @@
 @use "abstracts" as *;
 
+// Repère de 1 px en haut du document : dès qu'il sort du viewport, la barre est collée.
+.sentinel {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+}
+
 .header {
   position: sticky;
-  top: $page-gutter;
+  top: 0;
   z-index: 50;
-  margin: $page-gutter $page-gutter 0;
+  // Gouttière en padding (et non en marge) : la barre peut la recouvrir sans décaler la page.
+  padding: $page-gutter $page-gutter 0;
 }
 
 .bar {
@@ -18,6 +27,23 @@
   border-radius: $radius-md;
   background: $color-white;
   box-shadow: $shadow-header;
+  transition:
+    margin 0.3s $ease-out,
+    transform 0.3s $ease-out,
+    border-radius 0.3s $ease-out,
+    box-shadow 0.3s $ease-out;
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Au scroll : la barre vient se coller en haut et sur les côtés.
+.stuck .bar {
+  margin-inline: calc(#{$page-gutter} * -1);
+  border-radius: 0;
+  box-shadow: 0 rem(2) rem(12) rgba(0, 0, 0, 0.12);
+  transform: translateY(calc(#{$page-gutter} * -1));
 }
 
 .brand {

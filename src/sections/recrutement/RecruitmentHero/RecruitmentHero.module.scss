@@ -1,0 +1,142 @@
+@use "abstracts" as *;
+
+.hero {
+  // Mêmes gouttières que la barre de navigation : le bloc s'aligne sur ses bords.
+  margin-inline: $page-gutter;
+  padding-block: rem(24) rem(60);
+
+  @include below(md) {
+    padding-block: rem(16) rem(40);
+  }
+}
+
+// Aplat décoratif de la maquette (cercles bleu et crème détourés), exporté depuis Figma
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 721fr) minmax(0, 640fr);
+  align-items: center;
+  gap: rem(48);
+  min-height: rem(609);
+  padding: rem(78) rem(56);
+  border-radius: $radius-lg;
+  background: url("/images/recrutement/hero-shape.svg") center / cover no-repeat;
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: rem(40) rem(28);
+  }
+}
+
+.title {
+  white-space: pre-line;
+  font-size: rem(69);
+  font-weight: 700;
+  line-height: 1.03;
+  color: #333;
+
+  @include below(lg) {
+    font-size: rem(56);
+  }
+
+  @include below(sm) {
+    font-size: rem(40);
+  }
+}
+
+.highlight {
+  color: #00b7ef;
+}
+
+.subtitle {
+  max-width: rem(584);
+  margin-top: rem(24);
+  font-size: rem(24);
+  line-height: 1.5;
+  color: #767676;
+
+  @include below(sm) {
+    font-size: rem(19);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(24);
+  margin-top: rem(40);
+}
+
+.secondary {
+  box-shadow: 0 rem(4) rem(25) rgba(0, 0, 0, 0.05);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  list-style: none;
+
+  @include below(lg) {
+    gap: rem(18);
+  }
+}
+
+.card {
+  max-width: rem(572);
+  min-height: rem(118);
+  padding: rem(24) rem(36);
+  border-radius: $radius-md;
+  box-shadow: 0 rem(4) rem(25) rgba(0, 0, 0, 0.05);
+
+  // Inclinaisons de la maquette, neutralisées sur petits écrans
+  @include above(lg) {
+    &:nth-child(odd) {
+      rotate: -1.76deg;
+    }
+
+    &:nth-child(2) {
+      margin-left: rem(55);
+      rotate: 1.16deg;
+    }
+
+    &:last-child {
+      margin-left: rem(16);
+      rotate: -2.35deg;
+    }
+  }
+
+  @include below(sm) {
+    padding: rem(20) rem(24);
+  }
+}
+
+.blue {
+  background: #00b7ef;
+  color: $color-white;
+}
+
+.gold {
+  background: #eeb531;
+  color: $color-white;
+}
+
+.white {
+  background: $color-white;
+  color: #4fc46f;
+}
+
+.value {
+  display: block;
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.label {
+  display: block;
+  margin-top: rem(4);
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1.5;
+}

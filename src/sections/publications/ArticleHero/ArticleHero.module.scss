@@ -1,0 +1,115 @@
+@use "abstracts" as *;
+
+.hero {
+  @include container(rem(1676));
+  padding-block: rem(24) rem(48);
+
+  @include below(md) {
+    padding-block: rem(16) rem(32);
+  }
+}
+
+// Aplat décoratif de la maquette (cercle bleu détouré), exporté depuis Figma
+.inner {
+  min-height: rem(456);
+  padding: rem(44) rem(60);
+  border-radius: $radius-lg;
+  background: url("/images/publications/article-hero-shape.svg") center / cover no-repeat;
+
+  @include below(md) {
+    min-height: 0;
+    padding: rem(28) rem(24) rem(36);
+  }
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(10);
+  font-size: rem(16);
+  font-weight: 600;
+  color: #0078a9;
+
+  svg {
+    font-size: rem(20);
+    transition: transform 0.35s $ease-out;
+  }
+
+  @include hover {
+    text-decoration: underline;
+
+    svg {
+      transform: translateX(rem(-4));
+    }
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(12);
+  margin-top: rem(48);
+}
+
+%pill {
+  display: inline-flex;
+  align-items: center;
+  height: rem(36);
+  padding-inline: rem(20);
+  border-radius: $radius-pill;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.category {
+  @extend %pill;
+  background: #0092ff;
+  color: $color-white;
+}
+
+.source {
+  @extend %pill;
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(10) rgba(0, 0, 0, 0.05);
+  color: #0078a9;
+}
+
+.place {
+  font-size: rem(16);
+  font-weight: 600;
+  color: #0078a9;
+}
+
+.title {
+  max-width: rem(953);
+  margin-top: rem(26);
+  font-size: rem(63);
+  font-weight: 700;
+  line-height: 1.13;
+  color: $color-muted;
+
+  @include below(lg) {
+    font-size: rem(48);
+  }
+
+  @include below(sm) {
+    font-size: rem(34);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+  margin-top: rem(36);
+  list-style: none;
+}
+
+.tag {
+  @extend %pill;
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(10) rgba(0, 0, 0, 0.05);
+  color: #767676;
+}

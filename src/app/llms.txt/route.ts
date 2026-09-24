@@ -31,6 +31,8 @@ export function GET() {
     "## Contact",
     "",
     `- [Nous contacter](${absoluteUrl("/contact")}): un numéro par cabinet et un formulaire de contact.`,
+    `- [Publications et actualités](${absoluteUrl("/publications")}): travaux en congrès, cas cliniques et actualités sanitaires.`,
+    `- [Recrutement](${absoluteUrl("/recrutement")}): offres en cours et candidatures spontanées.`,
     `- Contact général : ${emails.contact.label}`,
     `- Recrutement : ${emails.recruitment.label}`,
     `- Hyovet et Hyovet Services : ${formatAddress(addresses.hyovet)}`,

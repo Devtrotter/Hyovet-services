@@ -1,0 +1,6 @@
+@use "abstracts" as *;
+
+.contact {
+  @include container(rem(1598));
+  padding-block: rem(48) rem(60);
+}

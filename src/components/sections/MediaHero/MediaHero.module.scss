@@ -41,7 +41,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.43);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .content {
@@ -85,6 +85,8 @@
   }
 
   .title {
+    // Crème de la maquette (#fff7e3), pas un blanc pur
+    color: #fff7e3;
     font-size: rem(60);
 
     @include below(md) {
@@ -97,7 +99,7 @@
   }
 
   .subtitle {
-    max-width: rem(700);
+    max-width: rem(772);
     font-size: rem(30);
 
     @include below(md) {

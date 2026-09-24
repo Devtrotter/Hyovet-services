@@ -1,0 +1,180 @@
+@use "abstracts" as *;
+
+.section {
+  @include container(rem(1479));
+  padding-block: rem(84) rem(96);
+
+  @include below(md) {
+    padding-block: rem(48) rem(56);
+  }
+}
+
+// Barre de filtres : thématiques à gauche, tags à droite
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(18);
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+  height: rem(60);
+  padding-inline: rem(28);
+  border-radius: $radius-pill;
+  background: #edf3f9;
+  font-size: rem(23);
+  font-weight: 600;
+  color: $color-black;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: #dce7f2;
+  }
+
+  @include focus-ring(#00b7ef);
+
+  @include below(sm) {
+    height: rem(50);
+    padding-inline: rem(20);
+    font-size: rem(19);
+  }
+}
+
+.active {
+  background: $color-black;
+  color: $color-white;
+
+  @include hover {
+    background: $color-black;
+  }
+}
+
+.tagSelect {
+  position: relative;
+}
+
+.select {
+  width: rem(321);
+  max-width: 100%;
+  height: rem(59);
+  padding-inline: rem(56) rem(24);
+  border: 1.5px solid $color-black;
+  border-radius: $radius-pill;
+  appearance: none;
+  background: $color-white;
+  font-family: $font-heading;
+  font-size: rem(20);
+  font-weight: 600;
+  color: $color-black;
+  cursor: pointer;
+
+  @include focus-ring(#00b7ef);
+}
+
+// Le chevron est à gauche du libellé dans la maquette
+.caret {
+  position: absolute;
+  top: 50%;
+  left: rem(20);
+  font-size: rem(26);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.count {
+  margin-top: rem(48);
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: rem(48);
+  margin-top: rem(48);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(30);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+    gap: rem(24);
+  }
+}
+
+.empty {
+  margin-top: rem(48);
+  padding: rem(36);
+  border-radius: $radius-md;
+  background: #f5fafd;
+  font-size: rem(20);
+  line-height: 1.5;
+  color: #5f5f5f;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: rem(12);
+  margin-top: rem(72);
+
+  @include below(md) {
+    margin-top: rem(48);
+  }
+}
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(12);
+  min-width: rem(72);
+  height: rem(72);
+  padding-inline: rem(20);
+  border: 1.5px solid $color-black;
+  border-radius: $radius-md;
+  background: $color-white;
+  font-size: rem(20);
+  font-weight: 600;
+  color: $color-black;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-black;
+    color: $color-white;
+  }
+
+  @include focus-ring(#00b7ef);
+
+  @include below(sm) {
+    min-width: rem(56);
+    height: rem(56);
+  }
+}
+
+.current {
+  background: $color-black;
+  color: $color-white;
+  pointer-events: none;
+}
+
+.next {
+  padding-inline: rem(28);
+}

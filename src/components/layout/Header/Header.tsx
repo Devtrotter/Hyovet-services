@@ -4,12 +4,13 @@ import { FiArrowRight } from "react-icons/fi";
 import { ButtonLink } from "@/components/ui/Button/Button";
 import { contactLink, mainNav } from "@/content/site";
 import styles from "./Header.module.scss";
+import { HeaderShell } from "./HeaderShell";
 import { MobileNav } from "./MobileNav";
 import { NavDropdown } from "./NavDropdown";
 
 export function Header() {
   return (
-    <header className={styles.header}>
+    <HeaderShell>
       <div className={styles.bar}>
         <Link href="/" className={styles.brand} aria-label="Hyovet Services — accueil">
           <Image
@@ -71,6 +72,6 @@ export function Header() {
 
         <MobileNav links={[...mainNav, contactLink]} />
       </div>
-    </header>
+    </HeaderShell>
   );
 }

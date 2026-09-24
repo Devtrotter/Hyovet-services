@@ -57,6 +57,8 @@ export interface NewsItem {
   date: string; // ISO
   href: string;
   tone: Tone;
+  /** Thématiques, utilisées par le filtre de la page publications */
+  tags?: string[];
   image?: { src: string; alt: string };
 }
 

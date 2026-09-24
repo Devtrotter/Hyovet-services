@@ -17,9 +17,8 @@ export const mainNav: NavLink[] = [
   { label: "Accueil", href: "/" },
   { label: "Expertise", href: "/expertise", children: expertiseMenu, allLabel: "Toutes nos expertises" },
   { label: "Cabinets", href: "/cabinets", children: cabinetsMenu },
-  // Pages pas encore créées : à réactiver à leur mise en ligne.
-  // { label: "Publication", href: "/publications" },
-  // { label: "Recrutement", href: "/recrutement" },
+  { label: "Publication", href: "/publications" },
+  { label: "Recrutement", href: "/recrutement" },
 ];
 
 export const contactLink: NavLink = { label: "Nous contacter", href: "/contact" };

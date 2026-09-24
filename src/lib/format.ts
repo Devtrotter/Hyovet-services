@@ -6,6 +6,27 @@ export function formatShortDate(iso: string): string {
   return `${day} ${SHORT_MONTHS[month - 1]} ${year}`;
 }
 
+const MONTHS = [
+  "janvier",
+  "février",
+  "mars",
+  "avril",
+  "mai",
+  "juin",
+  "juillet",
+  "août",
+  "septembre",
+  "octobre",
+  "novembre",
+  "décembre",
+];
+
+/** "2026-02-04" -> "4 février 2026" (détail d'une publication). */
+export function formatLongDate(iso: string): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  return `${day} ${MONTHS[month - 1]} ${year}`;
+}
+
 export function cx(...classes: Array<string | false | null | undefined>): string {
   return classes.filter(Boolean).join(" ");
 }
