@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl } from "@/utils/helpers/seo";
 
 // Moteurs de recherche et assistants IA (GPTBot, ClaudeBot, PerplexityBot…) sont autorisés :
 // être cité dans leurs réponses fait partie de la stratégie de visibilité (GEO).

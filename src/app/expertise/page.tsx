@@ -1,24 +1,20 @@
-import type { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { MediaHero } from "@/components/sections/MediaHero/MediaHero";
-import { expertiseHero } from "@/content/expertise";
-import { pageMetadata } from "@/lib/seo";
-import { Domains } from "@/sections/expertise/Domains/Domains";
-import { Method } from "@/sections/expertise/Method/Method";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { Domains } from "@/components/pages/expertise/Domains/Domains";
+import { Method } from "@/components/pages/expertise/Method/Method";
+import { MediaHero } from "@/components/shared/organisms/MediaHero/MediaHero";
+import { domains } from "@/utils/data/content/expertise/domains";
+import { expertiseHero } from "@/utils/data/content/expertise/hero";
+import { method, publicationsCta } from "@/utils/data/content/expertise/method";
+import { expertiseSeo } from "@/utils/data/seo/expertise";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Nos domaines d'expertise vétérinaire porcine",
-  description: expertiseHero.subtitle,
-  path: "/expertise",
-  image: { url: expertiseHero.poster, width: 1920, height: 1080 },
-});
+export const metadata = expertiseSeo;
 
 export default function ExpertisePage() {
   return (
     <>
       <MediaHero id="expertise-title" variant="page" {...expertiseHero} />
-      <Domains />
-      <Method />
+      <Domains items={domains} />
+      <Method {...method} publicationsCta={publicationsCta} />
       <ScrollReveal />
     </>
   );

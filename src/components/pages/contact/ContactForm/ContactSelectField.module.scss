@@ -1,0 +1,38 @@
+@use "abstracts" as *;
+@use "form-controls" as controls;
+
+.field {
+  @include controls.field;
+}
+
+.input {
+  @include controls.input;
+}
+
+.selectWrap {
+  position: relative;
+
+  select {
+    padding-right: rem(60);
+    cursor: pointer;
+
+    // Option "Sélectionnez…" affichée comme un placeholder
+    &:has(option[value=""]:checked) {
+      color: #a8a8a8;
+    }
+
+    option {
+      color: $color-black;
+    }
+  }
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: rem(24);
+  font-size: rem(22);
+  color: #767676;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

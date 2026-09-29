@@ -1,44 +1,27 @@
 import type { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { PageIntro } from "@/components/sections/PageIntro/PageIntro";
-import { cabinetContacts, contactAside, contactIntro } from "@/content/contact";
-import { site } from "@/content/site";
-import { absoluteUrl, organizationId, pageMetadata, postalAddressJsonLd, serializeJsonLd } from "@/lib/seo";
-import { CabinetContactCard } from "@/sections/contact/CabinetContactCard/CabinetContactCard";
-import { ContactForm } from "@/sections/contact/ContactForm/ContactForm";
-import { NetworkMap } from "@/sections/contact/NetworkMap/NetworkMap";
-import styles from "./contact.module.scss";
+import { PageIntro } from "@/components/shared/atoms/PageIntro/PageIntro";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { CabinetContactCard } from "@/components/pages/contact/CabinetContactCard/CabinetContactCard";
+import { ContactForm } from "@/components/pages/contact/ContactForm/ContactForm";
+import { NetworkMap } from "@/components/pages/contact/NetworkMap/NetworkMap";
+import { cabinetContacts, contactAside } from "@/utils/data/content/contact/cabinets";
+import { contactForm } from "@/utils/data/content/contact/form";
+import { contactIntro } from "@/utils/data/content/contact/intro";
+import { contactJsonLd, contactSeo } from "@/utils/data/seo/contact";
+import { serializeJsonLd } from "@/utils/helpers/seo";
+import styles from "./page.module.scss";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Nous contacter",
-  description: `Contactez ${site.name} : un numéro par cabinet (Hyovet à Plestan, Selas de Surfonds près du Mans) et un formulaire pour toutes vos demandes.`,
-  path: "/contact",
-});
+export const metadata: Metadata = contactSeo;
 
 export default function ContactPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: contactIntro.title,
-    url: absoluteUrl("/contact"),
-    about: { "@id": organizationId },
-    mainEntity: cabinetContacts.map((cabinet) => ({
-      "@type": "VeterinaryCare",
-      name: cabinet.title,
-      telephone: cabinet.phone.label,
-      email: cabinet.email.label,
-      address: postalAddressJsonLd(cabinet.address),
-      openingHours: "Mo-Fr 08:30-18:00",
-    })),
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(contactJsonLd) }} />
       <PageIntro id="contact-title" {...contactIntro} />
       <section className={styles.contact} aria-label="Formulaire et coordonnées des cabinets">
         <div className={styles.layout}>
-          <ContactForm />
+          {/* Composant client : ses données viennent du serveur */}
+          <ContactForm content={contactForm} />
           <aside className={styles.aside} aria-labelledby="contact-aside-title">
             <div className={styles.asideHeading}>
               <h2 id="contact-aside-title" className={styles.asideTitle}>

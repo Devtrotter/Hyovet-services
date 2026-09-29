@@ -1,0 +1,43 @@
+@use "abstracts" as *;
+
+.cabinets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(18);
+  margin-top: rem(30);
+}
+
+.cabinet {
+  display: flex;
+  align-items: center;
+  gap: rem(18);
+  height: rem(71);
+  padding-inline: rem(24);
+  border-radius: $radius-sm;
+  background: $color-white;
+  transition:
+    transform 0.4s $ease-out,
+    box-shadow 0.4s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-3));
+    box-shadow: 0 rem(8) rem(20) rgba(0, 147, 214, 0.15);
+  }
+}
+
+.cabinetLogo {
+  width: auto;
+  height: rem(35);
+
+  li:last-child & {
+    height: rem(36.5);
+  }
+}
+
+.cabinetTagline {
+  width: rem(184);
+  font-size: rem(14.4);
+  line-height: rem(20);
+  white-space: pre-line;
+  color: $color-footer-muted;
+}

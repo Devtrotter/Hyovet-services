@@ -1,0 +1,70 @@
+@use "abstracts" as *;
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include above(lg) {
+    position: sticky;
+    top: rem(120);
+  }
+}
+
+.asideLabel {
+  font-size: rem(14);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: rem(1.5);
+  color: #9a9a9a;
+}
+
+.document {
+  padding: rem(24);
+  border-radius: $radius-md;
+  background: #f5fafd;
+  text-align: center;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(12);
+  height: rem(60);
+  margin-top: rem(18);
+  padding-inline: rem(24);
+  border-radius: $radius-pill;
+  background: #61b4ef;
+  color: $color-white;
+  font-size: rem(19);
+  font-weight: 600;
+  transition:
+    filter 0.25s ease,
+    box-shadow 0.35s $ease-out;
+
+  svg {
+    flex-shrink: 0;
+    font-size: rem(20);
+  }
+
+  @include hover {
+    filter: brightness(0.94);
+    box-shadow: 0 rem(8) rem(20) rgba(97, 180, 239, 0.35);
+  }
+
+  @include focus-ring(#0078a9);
+}
+
+.documentMeta {
+  margin-top: rem(16);
+  font-size: rem(16);
+  color: #767676;
+}
+
+.authors {
+  padding: rem(24);
+  border: 1px solid #ededed;
+  border-radius: $radius-md;
+  background: $color-white;
+}

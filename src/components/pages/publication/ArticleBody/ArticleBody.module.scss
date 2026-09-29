@@ -1,0 +1,20 @@
+@use "abstracts" as *;
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1043fr) minmax(0, 400fr);
+  align-items: start;
+  gap: rem(72);
+  @include container(rem(1559));
+  padding-block: rem(60) rem(84);
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(40);
+    padding-block: rem(36) rem(56);
+  }
+}
+
+.content {
+  max-width: rem(1043);
+}

@@ -1,0 +1,31 @@
+import { FiMapPin } from "react-icons/fi";
+import { GoogleMap } from "@/components/shared/molecules/GoogleMap/GoogleMap";
+import { SectionHeading } from "@/components/shared/atoms/SectionHeading/SectionHeading";
+import { cabinetContacts } from "@/utils/data/content/contact/cabinets";
+import { network } from "@/utils/data/content/contact/network";
+import { formatAddress } from "@/utils/data/content/shared/coordonnees";
+import styles from "./NetworkMap.module.scss";
+
+/** "Deux cabinets, un même réseau" : une carte par cabinet, chacune pointée sur son adresse. */
+export function NetworkMap() {
+  return (
+    <section className={styles.section} aria-labelledby="network-title">
+      <SectionHeading id="network-title" title={network.title} subtitle={network.subtitle} align="left" />
+      <div className={styles.grid}>
+        {cabinetContacts.map((cabinet) => (
+          <figure key={cabinet.theme} className={styles.item} data-theme={cabinet.theme}>
+            <GoogleMap view={cabinet.map} title={`Carte : ${cabinet.title}`} className={styles.map} />
+            <figcaption className={styles.caption}>
+              <FiMapPin className={styles.pin} aria-hidden />
+              <span>
+                <strong>{cabinet.title}</strong>
+                <br />
+                {formatAddress(cabinet.address)}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}

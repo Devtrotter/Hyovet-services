@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { DetailHero } from "@/components/sections/DetailHero/DetailHero";
-import { KeyFigures } from "@/components/sections/KeyFigures/KeyFigures";
-import { NewsSection } from "@/components/sections/NewsSection/NewsSection";
-import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
-import { expertiseDetails, expertiseHref, getExpertiseDetail } from "@/content/expertises";
-import { contactBanner } from "@/content/site";
-import { absoluteUrl, breadcrumbJsonLd, organizationId, pageMetadata, serializeJsonLd } from "@/lib/seo";
-import { Services } from "@/sections/expertise-detail/Services/Services";
-import { Situations } from "@/sections/expertise-detail/Situations/Situations";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { DetailHero } from "@/components/pages/expertise-detail/DetailHero/DetailHero";
+import { KeyFigures } from "@/components/shared/organisms/KeyFigures/KeyFigures";
+import { NewsSection } from "@/components/shared/organisms/NewsSection/NewsSection";
+import { ContactBanner } from "@/components/shared/molecules/ContactBanner/ContactBanner";
+import { Services } from "@/components/pages/expertise-detail/Services/Services";
+import { Situations } from "@/components/pages/expertise-detail/Situations/Situations";
+import { expertiseBreadcrumb, expertiseDetails, getExpertiseDetail } from "@/utils/data/content/expertise-detail";
+import { contactBanner } from "@/utils/data/content/shared/contact-banner";
+import { expertiseDetailJsonLd, expertiseDetailSeo } from "@/utils/data/seo/expertise-detail";
+import { serializeJsonLd } from "@/utils/helpers/seo";
 import styles from "./page.module.scss";
 
 // Seules les expertises connues sont pré-rendues ; toute autre URL renvoie une 404.
@@ -22,13 +23,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/expertise/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const expertise = getExpertiseDetail(slug);
-  if (!expertise) return {};
-
-  return pageMetadata({
-    title: `${expertise.name} — ${expertise.hero.title}`,
-    description: expertise.seoDescription,
-    path: expertiseHref(slug),
-  });
+  return expertise ? expertiseDetailSeo(expertise) : {};
 }
 
 export default async function ExpertiseDetailPage({ params }: PageProps<"/expertise/[slug]">) {
@@ -36,31 +31,12 @@ export default async function ExpertiseDetailPage({ params }: PageProps<"/expert
   const expertise = getExpertiseDetail(slug);
   if (!expertise) notFound();
 
-  const breadcrumb = [
-    { label: "Accueil", href: "/" },
-    { label: "Nos Expertises", href: "/expertise" },
-    { label: expertise.name, href: expertiseHref(slug) },
-  ];
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      breadcrumbJsonLd(breadcrumb),
-      {
-        "@type": "Service",
-        name: expertise.name,
-        description: expertise.seoDescription,
-        url: absoluteUrl(expertiseHref(slug)),
-        provider: { "@id": organizationId },
-        serviceType: expertise.services.items.map((item) => item.title),
-      },
-    ],
-  };
+  const jsonLd = serializeJsonLd(expertiseDetailJsonLd(expertise));
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-      <DetailHero id="detail-title" breadcrumb={breadcrumb} {...expertise.hero} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      <DetailHero id="detail-title" breadcrumb={expertiseBreadcrumb(expertise)} {...expertise.hero} />
       <KeyFigures figures={expertise.figures} variant="compact" label={`${expertise.name} en chiffres`} />
       <Services {...expertise.services} />
       <Situations {...expertise.situations} />

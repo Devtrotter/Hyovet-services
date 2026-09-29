@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+@use "form-controls" as controls;
+
+.field {
+  @include controls.field;
+}
+
+.textarea {
+  @include controls.control;
+  display: block;
+  min-height: rem(180);
+  padding: rem(18) rem(24);
+  border-radius: $radius-md;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+// Le champ "Message" occupe toute la largeur de la grille.
+.full {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,33 @@
+@use "abstracts" as *;
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(24);
+  min-height: rem(148);
+  margin-top: rem(48);
+  padding: rem(36) rem(42);
+  border-radius: $radius-lg;
+  background: $color-deep;
+  box-shadow: 0 rem(4) rem(13) #d4effc;
+  color: $color-white;
+
+  @include below(lg) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.bannerTitle {
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.bannerSubtitle {
+  margin-top: rem(6);
+  font-size: rem(18);
+  line-height: 1.5;
+  color: #e9e9e9;
+}

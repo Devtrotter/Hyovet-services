@@ -1,0 +1,28 @@
+@use "abstracts" as *;
+
+$footer-gutter: rem(72);
+
+.footer {
+  font-family: $font-footer;
+  background: $color-footer-bg;
+  color: $color-footer-link;
+}
+
+.inner {
+  padding: rem(84) $footer-gutter rem(120);
+
+  @include below(sm) {
+    padding: rem(60) rem(24) rem(120);
+  }
+}
+
+.logo {
+  display: flex;
+  width: fit-content;
+  margin-left: rem(6);
+
+  img {
+    width: rem(125);
+    height: auto;
+  }
+}

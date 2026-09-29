@@ -1,0 +1,61 @@
+@use "abstracts" as *;
+
+.newsletter {
+  max-width: rem(434);
+}
+
+.form {
+  position: relative;
+  display: flex;
+  height: rem(55);
+  margin-top: rem(18);
+  border: 1.5px solid $color-primary;
+  border-radius: $radius-pill;
+  background: $color-white;
+  overflow: hidden;
+
+  &:focus-within {
+    box-shadow: 0 0 0 rem(4) rgba($color-primary, 0.2);
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding-inline: rem(24);
+  border: 0;
+  background: transparent;
+  font-size: rem(16.8);
+  color: $color-footer-heading;
+
+  &::placeholder {
+    color: #bfbfbf;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit {
+  flex: none;
+  width: rem(152);
+  margin: -1.5px -1.5px -1.5px 0;
+  border-radius: $radius-pill;
+  background: $color-primary;
+  color: $color-white;
+  font-size: rem(16.8);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background: #0081bd;
+  }
+}
+
+.legal {
+  margin-top: rem(9);
+  font-size: rem(13.2);
+  line-height: rem(20);
+  color: $color-footer-legal;
+}

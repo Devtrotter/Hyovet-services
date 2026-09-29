@@ -1,0 +1,69 @@
+@use "abstracts" as *;
+
+.wrapper {
+  padding-block: rem(96);
+  padding-inline: $page-gutter;
+  background: #f5fafd;
+
+  @include below(md) {
+    padding-block: rem(36) rem(60);
+  }
+}
+
+.document {
+  max-width: rem(960);
+  margin-inline: auto;
+  padding: rem(48);
+  border-radius: $radius-lg;
+  background: $color-white;
+  font-size: rem(18);
+  line-height: 1.7;
+  color: #333;
+
+  @include below(md) {
+    padding: rem(24);
+  }
+
+  p,
+  ul,
+  table {
+    margin-top: rem(12);
+  }
+
+  ul {
+    padding-left: rem(24);
+    list-style: disc;
+  }
+
+  li + li {
+    margin-top: rem(6);
+  }
+
+  a {
+    color: $color-ocean;
+    text-decoration: underline;
+    text-underline-offset: rem(3);
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.section + .section {
+  margin-top: rem(48);
+}
+
+.heading {
+  font-size: rem(27);
+  font-weight: 600;
+  line-height: 1.4;
+  color: $color-text;
+}
+
+// Tableaux (finalités, durées de conservation) : défilement horizontal sur mobile
+.document .updated {
+  margin-top: rem(48);
+  font-size: rem(15);
+  color: #767676;
+}

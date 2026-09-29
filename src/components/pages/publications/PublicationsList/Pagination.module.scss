@@ -1,0 +1,54 @@
+@use "abstracts" as *;
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: rem(12);
+  margin-top: rem(72);
+
+  @include below(md) {
+    margin-top: rem(48);
+  }
+}
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(12);
+  min-width: rem(72);
+  height: rem(72);
+  padding-inline: rem(20);
+  border: 1.5px solid $color-black;
+  border-radius: $radius-md;
+  background: $color-white;
+  font-size: rem(20);
+  font-weight: 600;
+  color: $color-black;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-black;
+    color: $color-white;
+  }
+
+  @include focus-ring(#00b7ef);
+
+  @include below(sm) {
+    min-width: rem(56);
+    height: rem(56);
+  }
+}
+
+.current {
+  background: $color-black;
+  color: $color-white;
+  pointer-events: none;
+}
+
+.next {
+  padding-inline: rem(28);
+}

@@ -1,0 +1,15 @@
+@use "abstracts" as *;
+
+.privacy {
+  max-width: rem(760);
+  margin-top: rem(30);
+  font-size: rem(15);
+  line-height: 1.55;
+  color: #767676;
+}
+
+.link {
+  color: #0078a9;
+  text-decoration: underline;
+  text-underline-offset: rem(3);
+}

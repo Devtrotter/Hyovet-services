@@ -1,0 +1,54 @@
+@use "abstracts" as *;
+
+$footer-gutter: rem(72);
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(24);
+  min-height: rem(87);
+  padding: rem(18) $footer-gutter;
+  background: $color-primary;
+  color: $color-white;
+
+  @include below(sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: rem(24);
+  }
+}
+
+.copyright {
+  font-size: rem(15.45);
+  line-height: 1.5;
+
+  a {
+    @include hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  gap: rem(12);
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: rem(44);
+  height: rem(44);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  font-size: rem(14);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-white;
+    color: $color-primary;
+  }
+}

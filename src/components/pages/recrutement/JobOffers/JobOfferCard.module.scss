@@ -1,0 +1,79 @@
+@use "abstracts" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: rem(24);
+  border-radius: $radius-md;
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(25) rgba(0, 0, 0, 0.1);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: rem(35);
+  padding-inline: rem(14);
+  border-radius: rem(12);
+  font-size: rem(18);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hyovet {
+  background: #d4effc;
+}
+
+.surfonds {
+  background: #f6dce8;
+}
+
+.contract {
+  background: #e7f6e9;
+}
+
+.cardTitle {
+  margin-top: rem(30);
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+  margin-top: rem(18);
+  font-size: rem(18);
+  font-weight: 500;
+  color: #767676;
+
+  svg {
+    flex-shrink: 0;
+    font-size: rem(20);
+    color: #00b7ef;
+  }
+}
+
+.description {
+  margin-top: rem(18);
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #767676;
+}
+
+.apply {
+  align-self: flex-start;
+  height: rem(48);
+  margin-top: rem(30);
+  padding-inline: rem(28);
+  font-size: rem(16);
+}

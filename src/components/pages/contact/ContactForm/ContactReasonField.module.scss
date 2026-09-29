@@ -1,0 +1,6 @@
+@use "abstracts" as *;
+
+// Le champ "Motif" occupe toute la largeur de la grille.
+.full {
+  grid-column: 1 / -1;
+}

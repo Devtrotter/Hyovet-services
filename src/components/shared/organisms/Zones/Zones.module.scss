@@ -1,0 +1,14 @@
+@use "abstracts" as *;
+
+.section {
+  @include container(rem(1632));
+}
+
+.stacked {
+  padding-top: rem(120);
+}
+
+// Cabinets : titre + accordéon à gauche, carte pleine hauteur à droite
+.side {
+  padding-block: rem(96) rem(84);
+}

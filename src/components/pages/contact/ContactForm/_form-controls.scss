@@ -1,0 +1,54 @@
+@use "abstracts" as *;
+
+// Styles communs aux champs du formulaire de contact, partagés par les sous-composants.
+
+$field-border: #d6d6d6;
+$accent: #00b7ef;
+$danger: #d05833;
+
+/** Apparence commune aux input, select et textarea. */
+@mixin control {
+  width: 100%;
+  border: 1.5px solid $field-border;
+  background: $color-white;
+  font-family: inherit;
+  font-size: rem(19);
+  color: $color-black;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: #a8a8a8;
+  }
+
+  @include hover {
+    border-color: #b5b5b5;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $accent;
+    box-shadow: 0 0 0 rem(4) rgba($accent, 0.15);
+  }
+
+  &:user-invalid {
+    border-color: $danger;
+  }
+}
+
+/** Colonne d'un champ : libellé au-dessus du contrôle. */
+@mixin field {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+}
+
+/** Input pilule (nom, email, téléphone, select). */
+@mixin input {
+  @include control;
+  height: rem(60);
+  padding-inline: rem(24);
+  border-radius: $radius-pill;
+  appearance: none;
+}

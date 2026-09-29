@@ -1,0 +1,57 @@
+@use "abstracts" as *;
+
+$accent: #00b7ef;
+
+.section {
+  padding-block: rem(60);
+  background: #f5fafd;
+
+  @include below(md) {
+    padding-block: rem(40);
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 864fr) minmax(0, 627fr);
+  align-items: center;
+  gap: rem(60);
+  @include container(rem(1608));
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(30);
+  }
+}
+
+.title {
+  font-size: rem(45);
+  font-weight: 600;
+  line-height: 1.35;
+
+  @include below(sm) {
+    font-size: rem(32);
+  }
+}
+
+.subtitle {
+  max-width: rem(772);
+  margin-top: rem(24);
+  font-size: rem(24);
+  line-height: 1.5;
+
+  @include below(sm) {
+    font-size: rem(19);
+  }
+}
+
+.card {
+  padding: rem(36);
+  border-radius: $radius-lg;
+  background: $color-white;
+  box-shadow: 0 rem(4) rem(25) rgba(0, 0, 0, 0.1);
+
+  @include below(sm) {
+    padding: rem(24);
+  }
+}

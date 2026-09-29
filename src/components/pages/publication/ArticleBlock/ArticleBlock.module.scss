@@ -1,0 +1,73 @@
+@use "abstracts" as *;
+
+.lead {
+  font-size: rem(21);
+  line-height: 1.65;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.heading {
+  margin-top: rem(44);
+  font-size: rem(29);
+  font-weight: 700;
+  line-height: 1.4;
+
+  @include below(sm) {
+    font-size: rem(24);
+  }
+}
+
+.text {
+  margin-top: rem(18);
+  font-size: rem(21);
+  line-height: 1.65;
+}
+
+.list {
+  margin-top: rem(18);
+  padding-left: rem(28);
+  font-size: rem(21);
+  line-height: 1.65;
+  list-style: disc;
+
+  li + li {
+    margin-top: rem(8);
+  }
+}
+
+.figure {
+  margin-top: rem(36);
+}
+
+.figureMedia {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1000 / 414;
+  padding: rem(24);
+  border: 1.5px dashed #d4d4d4;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: #f7f7f7;
+}
+
+.figureImage {
+  object-fit: cover;
+}
+
+.figurePlaceholder {
+  font-size: rem(18);
+  font-weight: 600;
+  text-align: center;
+  color: #9a9a9a;
+}
+
+.caption {
+  margin-top: rem(12);
+  font-size: rem(16);
+  line-height: 1.5;
+  color: #767676;
+}

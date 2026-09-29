@@ -1,0 +1,10 @@
+@use "abstracts" as *;
+@use "form-controls" as controls;
+
+.field {
+  @include controls.field;
+}
+
+.input {
+  @include controls.input;
+}

@@ -1,30 +1,24 @@
-import type { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { MediaHero } from "@/components/sections/MediaHero/MediaHero";
-import { KeyFigures } from "@/components/sections/KeyFigures/KeyFigures";
-import { NewsSection } from "@/components/sections/NewsSection/NewsSection";
-import { hero, keyFigures, news, zones } from "@/content/home";
-import { site } from "@/content/site";
-import { baseOpenGraph } from "@/lib/seo";
-import { Needs } from "@/sections/home/Needs/Needs";
-import { Zones } from "@/components/sections/Zones/Zones";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { Needs } from "@/components/pages/home/Needs/Needs";
+import { KeyFigures } from "@/components/shared/organisms/KeyFigures/KeyFigures";
+import { MediaHero } from "@/components/shared/organisms/MediaHero/MediaHero";
+import { NewsSection } from "@/components/shared/organisms/NewsSection/NewsSection";
+import { Zones } from "@/components/shared/organisms/Zones/Zones";
+import { homeHero } from "@/utils/data/content/home/hero";
+import { keyFigures } from "@/utils/data/content/home/key-figures";
+import { needs } from "@/utils/data/content/home/needs";
+import { news } from "@/utils/data/content/home/news";
+import { zones } from "@/utils/data/content/home/zones";
+import { homeSeo } from "@/utils/data/seo/home";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-  openGraph: {
-    ...baseOpenGraph,
-    title: "Hyovet Services — Groupe vétérinaire expert de la filière porcine",
-    description: site.description,
-    url: "/",
-  },
-};
+export const metadata = homeSeo;
 
 export default function HomePage() {
   return (
     <>
-      <MediaHero id="hero-title" variant="home" {...hero} />
+      <MediaHero id="hero-title" variant="home" {...homeHero} />
       <KeyFigures figures={keyFigures} />
-      <Needs />
+      <Needs {...needs} />
       <Zones id="zones-title" title={zones.title} subtitle={zones.subtitle} items={zones.items} />
       <NewsSection id="news-title" title={news.title} items={news.items} />
       <ScrollReveal />

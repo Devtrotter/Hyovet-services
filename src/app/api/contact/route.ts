@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactForm } from "@/content/contact";
+import { contactForm } from "@/utils/data/content/contact/form";
 
 // Réception du formulaire de contact.
 // TODO (hors maquette) : envoyer la notification email à l'adresse unique définie par le client

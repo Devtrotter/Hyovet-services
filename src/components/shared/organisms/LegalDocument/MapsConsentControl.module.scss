@@ -1,0 +1,33 @@
+@use "abstracts" as *;
+
+.consentButton {
+  height: rem(48);
+  padding-inline: rem(24);
+  border: 1.5px solid $color-primary;
+  border-radius: $radius-pill;
+  font-size: rem(16);
+  font-weight: 600;
+  color: $color-primary;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    background: $color-primary;
+    color: $color-white;
+  }
+
+  @include focus-ring;
+}
+
+.consentControl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(12) rem(24);
+  padding: rem(18) rem(24);
+  border-radius: $radius-sm;
+  background: #f5fafd;
+}

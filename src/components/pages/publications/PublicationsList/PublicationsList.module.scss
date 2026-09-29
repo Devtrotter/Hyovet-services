@@ -1,0 +1,44 @@
+@use "abstracts" as *;
+
+.section {
+  @include container(rem(1479));
+  padding-block: rem(84) rem(96);
+
+  @include below(md) {
+    padding-block: rem(48) rem(56);
+  }
+}
+
+.count {
+  margin-top: rem(48);
+  font-size: rem(26);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: rem(48);
+  margin-top: rem(48);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(30);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+    gap: rem(24);
+  }
+}
+
+.empty {
+  margin-top: rem(48);
+  padding: rem(36);
+  border-radius: $radius-md;
+  background: #f5fafd;
+  font-size: rem(20);
+  line-height: 1.5;
+  color: #5f5f5f;
+}

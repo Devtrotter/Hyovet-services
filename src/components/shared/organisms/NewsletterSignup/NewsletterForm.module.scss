@@ -1,0 +1,90 @@
+@use "abstracts" as *;
+$accent: #00b7ef;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+}
+
+.input {
+  flex: 1 1 rem(280);
+  min-width: 0;
+  height: rem(60);
+  padding-inline: rem(24);
+  border: 1px solid #d9d9d9;
+  border-radius: $radius-pill;
+  background: $color-white;
+  font-family: inherit;
+  font-size: rem(19);
+  color: $color-black;
+
+  &::placeholder {
+    color: #b5b5b5;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $accent;
+    box-shadow: 0 0 0 rem(4) rgba($accent, 0.15);
+  }
+
+  &:user-invalid {
+    border-color: #d05833;
+  }
+}
+
+.submit {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: rem(10);
+  height: rem(60);
+  padding-inline: rem(28);
+  border-radius: $radius-pill;
+  background: $accent;
+  color: $color-white;
+  font-family: $font-heading;
+  font-size: rem(18);
+  font-weight: 600;
+  transition:
+    filter 0.25s ease,
+    box-shadow 0.35s $ease-out;
+
+  @include hover {
+    filter: brightness(0.94);
+    box-shadow: 0 rem(8) rem(20) rgba($accent, 0.3);
+
+    .submitIcon {
+      transform: translateX(rem(4));
+    }
+  }
+
+  @include focus-ring($accent);
+
+  @include below(sm) {
+    flex: 1;
+  }
+}
+
+.submitIcon {
+  font-size: rem(18);
+  transition: transform 0.35s $ease-out;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+  font-size: rem(16);
+  color: #03682f;
+
+  &[data-done="true"] {
+    margin-top: rem(18);
+  }
+
+  &:empty {
+    display: none;
+  }
+}

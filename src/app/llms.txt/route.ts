@@ -1,8 +1,8 @@
-import { cabinetPages } from "@/content/cabinets";
-import { expertiseDetails, expertiseHref } from "@/content/expertises";
-import { addresses, emails, formatAddress } from "@/content/contact-details";
-import { site, socials } from "@/content/site";
-import { absoluteUrl } from "@/lib/seo";
+import { cabinetPages } from "@/utils/data/content/cabinet";
+import { expertiseDetails, expertiseHref } from "@/utils/data/content/expertise-detail";
+import { addresses, emails, formatAddress } from "@/utils/data/content/shared/coordonnees";
+import { siteConfig, socials } from "@/utils/config/site";
+import { absoluteUrl } from "@/utils/helpers/seo";
 
 // Résumé du site au format llms.txt (https://llmstxt.org) : aide les assistants IA à comprendre
 // et citer correctement Hyovet Services. Généré depuis les contenus, donc toujours à jour.
@@ -10,9 +10,9 @@ export const dynamic = "force-static";
 
 export function GET() {
   const lines = [
-    `# ${site.name}`,
+    `# ${siteConfig.name}`,
     "",
-    `> ${site.description}`,
+    `> ${siteConfig.description}`,
     "",
     "Hyovet Services est l'alliance de deux cabinets vétérinaires indépendants spécialisés en médecine porcine : Hyovet à Plestan (Côtes-d'Armor) et la Selas de Surfonds dans la Sarthe.",
     "",

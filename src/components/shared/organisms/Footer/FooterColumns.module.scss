@@ -1,0 +1,59 @@
+@use "abstracts" as *;
+
+.columns {
+  display: grid;
+  // Proportions de la maquette (448 / 355 / 356 / 434), fluides.
+  grid-template-columns: minmax(0, 448fr) minmax(0, 355fr) minmax(0, 356fr) minmax(0, 431fr);
+  margin-top: rem(60);
+
+  @include below(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(36);
+  }
+
+  @include below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sitemap {
+  display: grid;
+  grid-template-columns: minmax(0, 217fr) minmax(0, 231fr);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  font-size: rem(18);
+  line-height: rem(38.5);
+  transition: color 0.2s ease;
+
+  @include hover {
+    color: $color-primary;
+  }
+}
+
+.column {
+  padding-top: rem(3);
+}
+
+.heading {
+  margin-bottom: rem(12);
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: rem(24);
+  color: $color-footer-heading;
+}
+
+.contact {
+  .link {
+    line-height: rem(34);
+  }
+}
+
+.glyph {
+  font-size: rem(12);
+}

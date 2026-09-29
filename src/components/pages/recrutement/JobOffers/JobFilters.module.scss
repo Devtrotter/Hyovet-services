@@ -1,0 +1,59 @@
+@use "abstracts" as *;
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(12) rem(18);
+  margin-top: rem(36);
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(12);
+}
+
+.separator {
+  width: 1.5px;
+  height: rem(40);
+  background: #d4d4d4;
+
+  @include below(sm) {
+    display: none;
+  }
+}
+
+.filter {
+  height: rem(60);
+  padding-inline: rem(28);
+  border: 1.5px solid #d4d4d4;
+  border-radius: $radius-pill;
+  background: $color-white;
+  font-family: $font-heading;
+  font-size: rem(20);
+  font-weight: 600;
+  color: $color-black;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+
+  @include hover {
+    border-color: $color-black;
+  }
+
+  &[aria-pressed="true"] {
+    border-color: $color-black;
+    background: $color-black;
+    color: $color-white;
+  }
+
+  @include focus-ring(#00b7ef);
+
+  @include below(sm) {
+    height: rem(50);
+    padding-inline: rem(20);
+    font-size: rem(18);
+  }
+}

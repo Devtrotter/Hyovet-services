@@ -1,0 +1,31 @@
+@use "abstracts" as *;
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 940fr) minmax(0, 644fr);
+  gap: rem(48);
+  margin-top: rem(48);
+
+  @include below(lg) {
+    grid-template-columns: 1fr;
+    gap: rem(30);
+  }
+}
+
+// Variante "side" (pages cabinet) : le titre passe dans la colonne de gauche.
+.layout[data-layout="side"] {
+  margin-top: 0;
+
+  .sideColumn > header {
+    margin-top: rem(-3);
+  }
+
+  // L'accordéon vit dans son propre module : on le vise par sa position.
+  .sideColumn > :last-child {
+    margin-top: rem(48);
+  }
+}
+
+.map {
+  min-height: rem(656);
+}

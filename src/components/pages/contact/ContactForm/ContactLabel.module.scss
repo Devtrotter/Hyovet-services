@@ -1,0 +1,17 @@
+@use "abstracts" as *;
+@use "form-controls" as controls;
+
+.label {
+  font-size: rem(19);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.required {
+  color: controls.$accent;
+}
+
+.optional {
+  font-weight: 400;
+  color: #767676;
+}

@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { cabinetPages } from "@/content/cabinets";
-import { expertiseDetails, expertiseHref } from "@/content/expertises";
-import { publicationDetails, publicationHref } from "@/content/publications";
-import { absoluteUrl } from "@/lib/seo";
+import { cabinetPages } from "@/utils/data/content/cabinet";
+import { expertiseDetails, expertiseHref } from "@/utils/data/content/expertise-detail";
+import { publicationDetails, publicationHref } from "@/utils/data/content/publication";
+import { absoluteUrl } from "@/utils/helpers/seo";
 
 // Uniquement les pages publiées. `lastModified` sera renseigné par le CMS (date réelle de mise à jour).
 export default function sitemap(): MetadataRoute.Sitemap {

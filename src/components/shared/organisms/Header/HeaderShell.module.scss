@@ -1,0 +1,24 @@
+@use "abstracts" as *;
+
+.sentinel {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  // Gouttière en padding (et non en marge) : la barre peut la recouvrir sans décaler la page.
+  padding: $page-gutter $page-gutter 0;
+}
+
+// Au scroll : la barre vient se coller en haut et sur les côtés.
+.header[data-stuck="true"] > :first-child {
+  margin-inline: calc(#{$page-gutter} * -1);
+  border-radius: 0;
+  box-shadow: 0 rem(2) rem(12) rgba(0, 0, 0, 0.12);
+  transform: translateY(calc(#{$page-gutter} * -1));
+}

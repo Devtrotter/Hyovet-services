@@ -1,0 +1,35 @@
+@use "abstracts" as *;
+@use "form-controls" as controls;
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: rem(12);
+  padding: rem(12) rem(18);
+  border-radius: $radius-sm;
+  background: #fff4ef;
+  font-size: rem(17);
+  line-height: 1.5;
+  color: #8a3a1f;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: rem(3);
+    font-size: rem(19);
+    color: controls.$danger;
+  }
+}
+
+.noticeInfo {
+  background: #eaf6ff;
+  color: #0b4f75;
+
+  svg {
+    color: controls.$accent;
+  }
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}

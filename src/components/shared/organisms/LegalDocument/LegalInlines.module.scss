@@ -1,0 +1,9 @@
+@use "abstracts" as *;
+
+.toComplete {
+  padding: 0 rem(6);
+  border-radius: rem(6);
+  background: #fff1c2;
+  color: #7a5200;
+  font-weight: 500;
+}

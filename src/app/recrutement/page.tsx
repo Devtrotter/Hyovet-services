@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { recruitmentIntro } from "@/content/recrutement";
-import { pageMetadata } from "@/lib/seo";
-import { JobOffers } from "@/sections/recrutement/JobOffers/JobOffers";
-import { RecruitmentHero } from "@/sections/recrutement/RecruitmentHero/RecruitmentHero";
-import { Stories } from "@/sections/recrutement/Stories/Stories";
-import { WhyJoin } from "@/sections/recrutement/WhyJoin/WhyJoin";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { JobOffers } from "@/components/pages/recrutement/JobOffers/JobOffers";
+import { RecruitmentHero } from "@/components/pages/recrutement/RecruitmentHero/RecruitmentHero";
+import { Stories } from "@/components/pages/recrutement/Stories/Stories";
+import { WhyJoin } from "@/components/pages/recrutement/WhyJoin/WhyJoin";
+import { offers, spontaneous } from "@/utils/data/content/recrutement/offers";
+import { recrutementSeo } from "@/utils/data/seo/recrutement";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Recrutement — rejoindre nos équipes vétérinaires",
-  description: recruitmentIntro.subtitle,
-  path: "/recrutement",
-});
+export const metadata: Metadata = recrutementSeo;
 
 export default function RecrutementPage() {
   return (
@@ -19,7 +15,8 @@ export default function RecrutementPage() {
       <RecruitmentHero id="recrutement-title" />
       <WhyJoin />
       <Stories />
-      <JobOffers />
+      {/* Composant client : ses données viennent du serveur */}
+      <JobOffers offers={offers} spontaneous={spontaneous} />
       <ScrollReveal />
     </>
   );

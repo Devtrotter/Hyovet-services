@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { NewsSection } from "@/components/sections/NewsSection/NewsSection";
-import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
-import {
-  articleLabels,
-  getPublication,
-  publicationDetails,
-  publicationHref,
-  publications,
-} from "@/content/publications";
-import { contactBanner } from "@/content/site";
-import { absoluteUrl, organizationId, pageMetadata, serializeJsonLd } from "@/lib/seo";
-import { ArticleBody } from "@/sections/publications/ArticleBody/ArticleBody";
-import { ArticleHero } from "@/sections/publications/ArticleHero/ArticleHero";
-import { NewsletterSignup } from "@/sections/publications/NewsletterSignup/NewsletterSignup";
-import styles from "./article.module.scss";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { NewsSection } from "@/components/shared/organisms/NewsSection/NewsSection";
+import { NewsletterSignup } from "@/components/shared/organisms/NewsletterSignup/NewsletterSignup";
+import { ContactBanner } from "@/components/shared/molecules/ContactBanner/ContactBanner";
+import { ArticleBody } from "@/components/pages/publication/ArticleBody/ArticleBody";
+import { ArticleHero } from "@/components/pages/publication/ArticleHero/ArticleHero";
+import { articleLabels, getPublication, publicationDetails, publicationHref, publications } from "@/utils/data/content/publication";
+import { newsletter } from "@/utils/data/content/publications/newsletter";
+import { contactBanner } from "@/utils/data/content/shared/contact-banner";
+import { publicationJsonLd, publicationSeo } from "@/utils/data/seo/publication";
+import { serializeJsonLd } from "@/utils/helpers/seo";
+import styles from "./page.module.scss";
 
 type Params = Promise<{ slug: string }>;
 
@@ -26,13 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
   const publication = getPublication(slug);
-  if (!publication) return {};
-
-  return pageMetadata({
-    title: publication.title,
-    description: publication.summary,
-    path: publicationHref(slug),
-  });
+  return publication ? publicationSeo(publication) : {};
 }
 
 export default async function PublicationPage({ params }: { params: Params }) {
@@ -42,26 +32,20 @@ export default async function PublicationPage({ params }: { params: Params }) {
 
   // Publications partageant au moins une thématique, à défaut les plus récentes.
   const related = publications.filter((item) => item.href !== publicationHref(slug)).slice(0, 3);
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    headline: publication.title,
-    abstract: publication.summary,
-    datePublished: publication.date,
-    url: absoluteUrl(publicationHref(slug)),
-    keywords: publication.tags.join(", "),
-    author: publication.authors.map((author) => ({ "@type": "Person", name: author.name, jobTitle: author.role })),
-    publisher: { "@id": organizationId },
-  };
+  const jsonLd = serializeJsonLd(publicationJsonLd(publication));
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-      <ArticleHero id="publication-title" {...publication} />
-      <ArticleBody blocks={publication.blocks} authors={publication.authors} file={publication.document} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      <ArticleHero id="publication-title" backLabel={articleLabels.back} {...publication} />
+      <ArticleBody
+        blocks={publication.blocks}
+        authors={publication.authors}
+        file={publication.document}
+        labels={articleLabels}
+      />
       <NewsSection id="related-title" title={articleLabels.related} items={related} align="left" />
-      <NewsletterSignup />
+      <NewsletterSignup {...newsletter} />
       <div className={styles.contact}>
         <ContactBanner {...contactBanner} />
       </div>

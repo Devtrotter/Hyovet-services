@@ -1,54 +1,44 @@
 import type { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { IntroSplit } from "@/components/sections/IntroSplit/IntroSplit";
-import { TeamSection } from "@/components/sections/TeamSection/TeamSection";
-import { ValuesSection } from "@/components/sections/ValuesSection/ValuesSection";
-import { ContactBanner } from "@/components/ui/ContactBanner/ContactBanner";
-import { groupPage } from "@/content/cabinets";
-import { breadcrumbJsonLd, organizationId, pageMetadata, serializeJsonLd, teamJsonLd } from "@/lib/seo";
-import { contactBanner } from "@/content/site";
-import { CabinetsShowcase } from "@/sections/cabinets/CabinetsShowcase/CabinetsShowcase";
-import { GroupHero } from "@/sections/cabinets/GroupHero/GroupHero";
-import { Timeline } from "@/sections/cabinets/Timeline/Timeline";
-import styles from "./cabinets.module.scss";
+import { ScrollReveal } from "@/components/shared/atoms/ScrollReveal/ScrollReveal";
+import { IntroSplit } from "@/components/shared/organisms/IntroSplit/IntroSplit";
+import { TeamSection } from "@/components/shared/organisms/TeamSection/TeamSection";
+import { ValuesSection } from "@/components/shared/organisms/ValuesSection/ValuesSection";
+import { ContactBanner } from "@/components/shared/molecules/ContactBanner/ContactBanner";
+import { CabinetsShowcase } from "@/components/pages/cabinets/CabinetsShowcase/CabinetsShowcase";
+import { GroupHero } from "@/components/pages/cabinets/GroupHero/GroupHero";
+import { Timeline } from "@/components/pages/cabinets/Timeline/Timeline";
+import { adn } from "@/utils/data/content/cabinets/adn";
+import { breadcrumbLabel, hero } from "@/utils/data/content/cabinets/hero";
+import { showcase } from "@/utils/data/content/cabinets/showcase";
+import { groupTeam } from "@/utils/data/content/cabinets/team";
+import { groupValues } from "@/utils/data/content/cabinets/values";
+import { contactBanner } from "@/utils/data/content/shared/contact-banner";
+import { cabinetsJsonLd, cabinetsMetadata } from "@/utils/data/seo/cabinets";
+import { serializeJsonLd } from "@/utils/helpers/seo";
+import styles from "./page.module.scss";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Nos cabinets vétérinaires porcins — Hyovet & Selas de Surfonds",
-  description: groupPage.hero.subtitle,
-  path: "/cabinets",
-});
+export const metadata: Metadata = cabinetsMetadata;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    breadcrumbJsonLd([
-      { label: "Accueil", href: "/" },
-      { label: "Cabinets", href: "/cabinets" },
-    ]),
-    ...teamJsonLd(groupPage.team, organizationId),
-  ],
-};
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Cabinets", href: "/cabinets" },
+  { label: breadcrumbLabel, href: "/cabinets" },
+];
 
 export default function CabinetsPage() {
-  const breadcrumb = [
-    { label: "Accueil", href: "/" },
-    { label: "Cabinets", href: "/cabinets" },
-    { label: groupPage.breadcrumbLabel, href: "/cabinets" },
-  ];
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-      <GroupHero breadcrumb={breadcrumb} {...groupPage.hero} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(cabinetsJsonLd) }} />
+      <GroupHero breadcrumb={breadcrumb} {...hero} />
       <IntroSplit
         id="adn-title"
-        title={groupPage.adn.title}
-        paragraphs={groupPage.adn.paragraphs}
-        aside={<Timeline items={groupPage.adn.timeline} />}
+        title={adn.title}
+        paragraphs={adn.paragraphs}
+        aside={<Timeline items={adn.timeline} />}
       />
-      <ValuesSection {...groupPage.values} />
-      <TeamSection {...groupPage.team} variant="plain" />
-      <CabinetsShowcase {...groupPage.cabinets} />
+      <ValuesSection {...groupValues} />
+      <TeamSection {...groupTeam} variant="plain" />
+      <CabinetsShowcase {...showcase} />
       <div className={styles.contact}>
         <ContactBanner {...contactBanner} />
       </div>

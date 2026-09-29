@@ -1,0 +1,119 @@
+@use "abstracts" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: rem(24);
+  border-radius: $radius-lg;
+  text-align: center;
+  transition: transform 0.45s $ease-out;
+
+  @include hover {
+    transform: translateY(rem(-4));
+  }
+}
+
+.photo {
+  width: rem(96);
+  height: rem(96);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: rem(96);
+  height: rem(96);
+  border-radius: 50%;
+  font-size: rem(48);
+}
+
+.name {
+  margin-top: rem(12);
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.role {
+  margin-top: rem(15);
+  font-size: rem(17);
+  line-height: rem(26);
+  color: #767676;
+  white-space: pre-line;
+}
+
+.linkedin {
+  display: grid;
+  place-items: center;
+  width: rem(48);
+  height: rem(48);
+  margin-top: rem(27);
+  border-radius: rem(6);
+  font-size: rem(22);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+// Déclinaisons de couleur par groupe
+
+// Déclinaisons de ton du groupe, portées par un attribut data- sur la carte.
+.card[data-tone="blue"] {
+  background: #f5fafd;
+
+  .avatar {
+    background: #d4effc;
+    color: #00b7ef;
+  }
+
+  .linkedin {
+    background: #d4effc;
+    color: #00b7ef;
+
+    @include hover {
+      background: #00b7ef;
+      color: $color-white;
+    }
+  }
+}
+
+.card[data-tone="green"] {
+  background: #e7f6e9;
+
+  .avatar {
+    background: #c2fbc9;
+    color: #4fc46f;
+  }
+
+  .linkedin {
+    background: #c2fbc9;
+    color: #4fc46f;
+
+    @include hover {
+      background: #4fc46f;
+      color: $color-white;
+    }
+  }
+}
+
+.card[data-tone="white"] {
+  background: $color-white;
+
+  .avatar {
+    background: var(--cab-soft, #d4effc);
+    color: var(--cab-accent, #00b7ef);
+  }
+
+  .linkedin {
+    background: var(--cab-soft, #d4effc);
+    color: var(--cab-accent, #00b7ef);
+
+    @include hover {
+      background: var(--cab-accent, #00b7ef);
+      color: $color-white;
+    }
+  }
+}

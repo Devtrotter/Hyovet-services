@@ -1,0 +1,5 @@
+// Mise en page de l'accueil.
+// Le cadre (<main id="contenu">) est porté par le layout racine et chaque section
+// gère sa propre largeur via le mixin `container` : la page n'ajoute donc aucun
+// conteneur supplémentaire, pour ne pas dupliquer les marges. Ce fichier accueille
+// les règles propres à l'empilement des sections de l'accueil, le jour où il en faudra.
