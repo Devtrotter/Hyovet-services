@@ -13,11 +13,11 @@ import { showcase } from "@/utils/data/content/cabinets/showcase";
 import { groupTeam } from "@/utils/data/content/cabinets/team";
 import { groupValues } from "@/utils/data/content/cabinets/values";
 import { contactBanner } from "@/utils/data/content/shared/contact-banner";
-import { cabinetsJsonLd, cabinetsMetadata } from "@/utils/data/seo/cabinets";
+import { cabinetsJsonLd, cabinetsSeo } from "@/utils/data/seo/cabinets";
 import { serializeJsonLd } from "@/utils/helpers/seo";
 import styles from "./page.module.scss";
 
-export const metadata: Metadata = cabinetsMetadata;
+export const metadata: Metadata = cabinetsSeo;
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },

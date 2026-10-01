@@ -12,7 +12,7 @@ import type { CabinetPage } from "@/utils/types/cabinet";
 import type { NavLink } from "@/utils/types/common";
 
 /** Métadonnées d'une page cabinet : valeurs fixes complétées par les données du cabinet. */
-export const cabinetMetadata = (page: CabinetPage): Metadata =>
+export const cabinetSeo = (page: CabinetPage): Metadata =>
   pageMetadata({
     title: `${page.name} — ${page.hero.title}`,
     description: page.seoDescription,

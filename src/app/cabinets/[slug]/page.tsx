@@ -10,7 +10,7 @@ import { CabinetHero } from "@/components/pages/cabinet/CabinetHero/CabinetHero"
 import { CabinetInfoCard } from "@/components/pages/cabinet/CabinetInfoCard/CabinetInfoCard";
 import { cabinetPages, getCabinetPage } from "@/utils/data/content/cabinet";
 import { contactBanner } from "@/utils/data/content/shared/contact-banner";
-import { cabinetJsonLd, cabinetMetadata } from "@/utils/data/seo/cabinet";
+import { cabinetJsonLd, cabinetSeo } from "@/utils/data/seo/cabinet";
 import { cx } from "@/utils/helpers/format";
 import { serializeJsonLd } from "@/utils/helpers/seo";
 import styles from "./page.module.scss";
@@ -24,7 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/cabinets/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const page = getCabinetPage(slug);
-  return page ? cabinetMetadata(page) : {};
+  return page ? cabinetSeo(page) : {};
 }
 
 export default async function CabinetDetailPage({ params }: PageProps<"/cabinets/[slug]">) {

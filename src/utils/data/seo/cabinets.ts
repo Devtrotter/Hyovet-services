@@ -5,7 +5,7 @@ import { hero } from "@/utils/data/content/cabinets/hero";
 import { breadcrumbJsonLd, organizationId, teamJsonLd } from "@/utils/helpers/jsonLd";
 import { pageMetadata } from "@/utils/helpers/seo";
 
-export const cabinetsMetadata: Metadata = pageMetadata({
+export const cabinetsSeo: Metadata = pageMetadata({
   title: "Nos cabinets vétérinaires porcins — Hyovet & Selas de Surfonds",
   description: hero.subtitle,
   path: "/cabinets",
